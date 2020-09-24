@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SsHeroController : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class SsHeroController : MonoBehaviour
   public Vector2 m_Bounds = new Vector2(10.0f, 10.0f);
   public GameObject m_BulletPrefab;
   public float m_BasicGunCooldown = 0.25f;
+  public int m_MaxBullets = 4;
   public Vector3 m_BasicGunLocalOffset = new Vector3(0.0f, 1.0f, 0.0f);  // TODO: make this a separate game object
 
   Transform m_Tx;
@@ -13,6 +15,8 @@ public class SsHeroController : MonoBehaviour
   Vector2 m_CurrentStickInput = Vector2.zero;
   float m_CooldownTimer = 0;
   bool CoolingDown { get { return m_CooldownTimer < m_BasicGunCooldown; } }
+  bool BulletsAvailable { get { return m_Bullets.Count < m_MaxBullets; } }
+  List<GameObject> m_Bullets = new List<GameObject>();
 
 
   void Start()
@@ -28,6 +32,7 @@ public class SsHeroController : MonoBehaviour
     HandleFiring();
     ClampPosition();
     UpdateCooldown();
+    RemoveDeadBullets();
   }
 
 
@@ -65,7 +70,7 @@ public class SsHeroController : MonoBehaviour
 
   void AttemptFire()
   {
-    if (!CoolingDown)
+    if (!CoolingDown && BulletsAvailable)
       Fire();
   }
 
@@ -76,6 +81,7 @@ public class SsHeroController : MonoBehaviour
 
     var bulletWorldPosition = m_Tx.TransformPoint(m_BasicGunLocalOffset);
     var bullet = Instantiate(m_BulletPrefab, bulletWorldPosition, Quaternion.identity);
+    m_Bullets.Add(bullet);
   }
 
 
@@ -88,5 +94,17 @@ public class SsHeroController : MonoBehaviour
   void ResetCooldown()
   {
     m_CooldownTimer = 0;
+  }
+
+
+  void RemoveDeadBullets()
+  {
+    var newList = new List<GameObject>();
+
+    foreach (var bullet in m_Bullets)
+      if (bullet != null)
+        newList.Add(bullet);
+
+    m_Bullets = newList;
   }
 }
