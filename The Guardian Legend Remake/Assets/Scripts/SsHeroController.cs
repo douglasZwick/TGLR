@@ -5,18 +5,11 @@ public class SsHeroController : MonoBehaviour
 {
   public float m_MovementSpeed = 10.0f;
   public Vector2 m_Bounds = new Vector2(10.0f, 10.0f);
-  public GameObject m_BulletPrefab;
-  public float m_BasicGunCooldown = 0.25f;
-  public int m_MaxBullets = 4;
-  public Vector3 m_BasicGunLocalOffset = new Vector3(0.0f, 1.0f, 0.0f);  // TODO: make this a separate game object
+  public HeroGun m_Gun;
 
   Transform m_Tx;
   Rigidbody m_RB;
   Vector2 m_CurrentStickInput = Vector2.zero;
-  float m_CooldownTimer = 0;
-  bool CoolingDown { get { return m_CooldownTimer < m_BasicGunCooldown; } }
-  bool BulletsAvailable { get { return m_Bullets.Count < m_MaxBullets; } }
-  List<GameObject> m_Bullets = new List<GameObject>();
 
 
   void Start()
@@ -31,8 +24,6 @@ public class SsHeroController : MonoBehaviour
     HandleMovementInput();
     HandleFiring();
     ClampPosition();
-    UpdateCooldown();
-    RemoveDeadBullets();
   }
 
 
@@ -52,10 +43,9 @@ public class SsHeroController : MonoBehaviour
 
   void HandleFiring()
   {
+    // Assumes you always have a gun
     if (Input.GetButton("Fire1"))
-    {
-      AttemptFire();
-    }
+      m_Gun.AttemptFire();
   }
 
 
@@ -66,45 +56,11 @@ public class SsHeroController : MonoBehaviour
     position.y = Mathf.Clamp(position.y, -m_Bounds.y, m_Bounds.y);
     m_Tx.position = position;
   }
+}
 
 
-  void AttemptFire()
-  {
-    if (!CoolingDown && BulletsAvailable)
-      Fire();
-  }
-
-
-  void Fire()
-  {
-    ResetCooldown();
-
-    var bulletWorldPosition = m_Tx.TransformPoint(m_BasicGunLocalOffset);
-    var bullet = Instantiate(m_BulletPrefab, bulletWorldPosition, Quaternion.identity);
-    m_Bullets.Add(bullet);
-  }
-
-
-  void UpdateCooldown()
-  {
-    m_CooldownTimer += Time.deltaTime;
-  }
-
-
-  void ResetCooldown()
-  {
-    m_CooldownTimer = 0;
-  }
-
-
-  void RemoveDeadBullets()
-  {
-    var newList = new List<GameObject>();
-
-    foreach (var bullet in m_Bullets)
-      if (bullet != null)
-        newList.Add(bullet);
-
-    m_Bullets = newList;
-  }
+public enum HeroForm
+{
+  Humanoid,
+  Jet,
 }
