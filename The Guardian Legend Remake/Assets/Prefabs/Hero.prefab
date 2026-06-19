@@ -685,9 +685,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8908958628867094298}
-  - component: {fileID: 5620908918852298812}
   - component: {fileID: 1584763840066552919}
   - component: {fileID: 8661117956041248638}
+  - component: {fileID: 5620908918852298812}
+  - component: {fileID: 8008485413385109227}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -711,19 +712,6 @@ Transform:
   - {fileID: 2425634466493957057}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5620908918852298812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8402077182858761067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c25a3e60c66f7047b2c6d0967402b6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicMover
-  m_MovementSpeed: 5
 --- !u!114 &1584763840066552919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +769,48 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5620908918852298812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402077182858761067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c25a3e60c66f7047b2c6d0967402b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicMover
+  m_MovementSpeed: 12
+--- !u!114 &8008485413385109227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402077182858761067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36458492594025a4fb9500de8b6d6f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicGun
+  m_Events:
+    DidFire:
+      m_PersistentCalls:
+        m_Calls: []
+  m_BulletSpeed: 25
+  m_BulletPrefab: {fileID: 9210784394975165092, guid: a3b736cc58b7bb2478054c097732cf54, type: 3}
+  m_CooldownDuration: 0.25
+  m_MaxClusters: 4
+  m_FiringPattern:
+  - m_Pattern:
+    - m_Position: {x: 0, y: 1}
+      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
+  - m_Pattern:
+    - m_Position: {x: -0.4, y: 0.325}
+      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
+    - m_Position: {x: 0.4, y: 0.325}
+      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8583814969434041992
 GameObject:
   m_ObjectHideFlags: 0
