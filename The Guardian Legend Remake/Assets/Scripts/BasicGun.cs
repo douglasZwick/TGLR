@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 
@@ -12,8 +11,6 @@ public class BasicGun : MonoBehaviour
   {
     public FireEvent DidFire;
   }
-
-  public Events m_Events;
 
   public float m_BulletSpeed = 10;
   public ClusterMember m_BulletPrefab;
@@ -29,6 +26,8 @@ public class BasicGun : MonoBehaviour
 
   private bool ClusterAvailable => m_CurrentClusters.Count < m_MaxClusters;
   private bool CoolingDown => m_CooldownTimer < m_CooldownDuration;
+
+  public Events m_Events;
 
 
   void Awake()
@@ -61,18 +60,6 @@ public class BasicGun : MonoBehaviour
   }
 
 
-  void EndCooldown()
-  {
-    
-  }
-
-
-  // public void OnPrimaryFire()
-  // {
-  //   AttemptFire();
-  // }
-
-
   void AttemptFire()
   {
     if (CoolingDown) return;
@@ -103,29 +90,16 @@ public class BasicGun : MonoBehaviour
 
     m_CurrentClusters.Add(cluster);
 
-    // var bullet = Instantiate(m_BulletPrefab, m_FiringPoint.position, m_FiringPoint.rotation);
-    // bullet.m_Events.WasFired.Invoke(fireED);
-
     NextPatternIndex();
-
     BeginCooldown();
   }
 
 
-  void NextPatternIndex() { m_PatternIndex = (m_PatternIndex + 1) % m_FiringPattern.Count; }
+  void NextPatternIndex() => m_PatternIndex = (m_PatternIndex + 1) % m_FiringPattern.Count;
 
 
   void DestroyCluster(BulletCluster cluster)
   {
     m_CurrentClusters.Remove(cluster);
   }
-}
-
-
-[System.Serializable]
-public class FireEvent : UnityEvent<FireEventData> { }
-
-public class FireEventData
-{
-  public float m_Speed;
 }

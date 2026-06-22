@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 2097015524395135702}
   - component: {fileID: 1319500484872193347}
   - component: {fileID: 9210784394975165092}
+  - component: {fileID: 8005703985539456456}
   - component: {fileID: 5989377189336236005}
   - component: {fileID: 627862144462622222}
   - component: {fileID: 6673763818822710456}
@@ -266,6 +267,35 @@ MonoBehaviour:
     WasFired:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &8005703985539456456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401732364572026295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7c81bd0a9f9484f99c1b30f0f8e652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoundsChecker2D
+  m_UpdateType: 2
+  m_Margin:
+    m_RightTop: {x: 0, y: 0}
+    m_LeftBottom: {x: 0, y: 0}
+  m_Events:
+    BoundsEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    BoundsIn:
+      m_PersistentCalls:
+        m_Calls: []
+    BoundsExit:
+      m_PersistentCalls:
+        m_Calls: []
+    BoundsOut:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &5989377189336236005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,9 +337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681c0545f2e5a1e44ab392bc971195f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnLeftScreen
-  m_Buffer:
-    m_RightTop: {x: 0, y: 0}
-    m_LeftBottom: {x: 0, y: 0}
 --- !u!1 &7574954943704862915
 GameObject:
   m_ObjectHideFlags: 0

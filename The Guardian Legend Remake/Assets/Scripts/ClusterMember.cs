@@ -10,9 +10,9 @@ public class ClusterMember : MonoBehaviour
     public FireEvent WasFired;
   }
 
-  public Events m_Events;
-
   private BulletCluster m_Owner;
+
+  public Events m_Events;
 
 
   void Awake()

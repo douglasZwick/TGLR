@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class Lifespan : MonoBehaviour
 {
   public float m_Duration = 1;
