@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2298361158814193366}
   - component: {fileID: 5812312509477284227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4774307850201743064}
   - component: {fileID: 9052924973933915805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1943464736633319079}
   - component: {fileID: 691630397555534265}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4613525259807548376}
   - component: {fileID: 1371961777097682435}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7370649193127105544}
   - component: {fileID: 756172970838330092}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2425634466493957057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphicals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,8 +481,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 173054776134095661}
   - {fileID: 2158275253874471879}
@@ -504,7 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173054776134095661}
   - component: {fileID: 168242570071478124}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3015008000400343946}
   - component: {fileID: 5544708669423450466}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,11 +688,12 @@ GameObject:
   - component: {fileID: 1584763840066552919}
   - component: {fileID: 8661117956041248638}
   - component: {fileID: 6194235385830842887}
+  - component: {fileID: 4196465013724515096}
   - component: {fileID: 8008485413385109227}
   - component: {fileID: 6610583080358130915}
   - component: {fileID: 6980813009760390283}
-  m_Layer: 0
-  m_Name: Hero
+  m_Layer: 8
+  m_Name: ScrollingHero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -783,7 +784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3e8080d3c3f3e43b2a0a1c2983d8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KinematicMover
-  m_MovementSpeed: 12
   m_Events:
     m_MoveRequested:
       m_PersistentCalls:
@@ -803,6 +803,19 @@ MonoBehaviour:
     m_Moved:
       m_PersistentCalls:
         m_Calls: []
+  m_MovementSpeed: 12
+--- !u!114 &4196465013724515096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402077182858761067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b5594ed89ae9541bfe8c7236f2659f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!114 &8008485413385109227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,9 +837,9 @@ MonoBehaviour:
     - m_Position: {x: 0, y: 1}
       m_Rotation: {x: 0, y: 0, z: 0, w: 0}
   - m_Pattern:
-    - m_Position: {x: -0.4, y: 0.325}
+    - m_Position: {x: -0.4, y: 1}
       m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-    - m_Position: {x: 0.4, y: 0.325}
+    - m_Position: {x: 0.4, y: 1}
       m_Rotation: {x: 0, y: 0, z: 0, w: 0}
   m_Events:
     DidFire:
@@ -883,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2158275253874471879}
   - component: {fileID: 221725983880100831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

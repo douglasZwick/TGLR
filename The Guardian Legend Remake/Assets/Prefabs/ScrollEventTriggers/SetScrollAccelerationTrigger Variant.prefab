@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7254427952851156211
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3695036246213573, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_Name
+      value: SetScrollAccelerationTrigger Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076568710665936681, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_Color.a
+      value: 0.69803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076568710665936681, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076568710665936681, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7510917
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076568710665936681, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.88543
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454685800698430803, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3695036246213573, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4268276815496746545}
+    - targetCorrespondingSourceObject: {fileID: 3695036246213573, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6015516074358518321}
+  m_SourcePrefab: {fileID: 100100000, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+--- !u!1 &7251296039451770678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3695036246213573, guid: 0a7dad634d7a0174fa7673525fedc5a9, type: 3}
+  m_PrefabInstance: {fileID: 7254427952851156211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4268276815496746545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251296039451770678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20495b0048f420f4290e014bd6fedeea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScrollEventTrigger
+--- !u!114 &6015516074358518321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251296039451770678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6989dcb9236315f42b1730e009adedc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetScrollAcceleration
+  m_Acceleration: 0
+  m_TargetSpeed: 0
