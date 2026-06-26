@@ -29,6 +29,7 @@ public class MovementEventData
   public Vector3 m_PreviousPosition;
   public Vector3 m_FinalPosition;
   public Vector3 m_Delta;
+  public Vector2 m_Direction;
 }
 
 

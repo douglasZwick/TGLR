@@ -34,6 +34,7 @@ public class KinematicMover : Mover
       m_PreviousPosition = previousPosition,
       m_FinalPosition = finalPosition,
       m_Delta = delta,
+      m_Direction = m_MoveInput.normalized,
     };
 
     m_Events.m_MoveRequested.Invoke(movementED);
