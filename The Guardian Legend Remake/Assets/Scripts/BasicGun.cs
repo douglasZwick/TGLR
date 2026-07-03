@@ -88,7 +88,7 @@ public class BasicGun : MonoBehaviour
       //   rotation node to the Z-axis rotation of the bullet. I'm gonna have to come up with a
       //   better long-term solution at some point, but I'll let it slide for now.
 
-      var angle = m_RotationNode.localEulerAngles.y + firingPoint.m_Rotation.eulerAngles.z;
+      var angle = m_RotationNode.localEulerAngles.z + firingPoint.m_Rotation.eulerAngles.z;
       var bulletWorldPosition = m_RotationNode.TransformPoint(firingPoint.m_Position);
       var rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
       var bullet = Instantiate(m_BulletPrefab, bulletWorldPosition, rotation);
