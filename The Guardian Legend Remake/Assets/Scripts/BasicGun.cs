@@ -18,7 +18,8 @@ public class BasicGun : MonoBehaviour
   public int m_MaxClusters = 4;
   public List<ClusterPattern> m_FiringPattern;
 
-  private Transform m_Tx;
+  [SerializeField]
+  private Transform m_RotationNode;
   private InputAction m_PrimaryFireAction;
   private float m_CooldownTimer = float.PositiveInfinity;
   private HashSet<BulletCluster> m_CurrentClusters = new();
@@ -32,8 +33,6 @@ public class BasicGun : MonoBehaviour
 
   void Awake()
   {
-    m_Tx = transform;
-    
     var playerInput = GetComponent<PlayerInput>();
     m_PrimaryFireAction = playerInput.actions.FindAction("PrimaryFire");
   }
@@ -80,9 +79,19 @@ public class BasicGun : MonoBehaviour
 
     foreach (var firingPoint in firingPoints)
     {
-      var position = m_Tx.TransformPoint(firingPoint.m_Position);
-      var rotation = m_Tx.rotation * firingPoint.m_Rotation;
-      var bullet = Instantiate(m_BulletPrefab, position, rotation);
+      // TODO:
+      //   I think I SHOULD use transformation to convert these firing points, but I can't be
+      //   arsed just now to figure out how, so I'm going to do it this more naive way for now
+
+      // ALSO:
+      //   This is gonna be extremely hard coded at first. I have to map the Y-axis rotation of the
+      //   rotation node to the Z-axis rotation of the bullet. I'm gonna have to come up with a
+      //   better long-term solution at some point, but I'll let it slide for now.
+
+      var angle = m_RotationNode.localEulerAngles.y + firingPoint.m_Rotation.eulerAngles.z;
+      var bulletWorldPosition = m_RotationNode.TransformPoint(firingPoint.m_Position);
+      var rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
+      var bullet = Instantiate(m_BulletPrefab, bulletWorldPosition, rotation);
       cluster.Add(bullet);
       var projectile = bullet.GetComponent<Projectile>();
       projectile.Setup(m_BulletSpeed);
