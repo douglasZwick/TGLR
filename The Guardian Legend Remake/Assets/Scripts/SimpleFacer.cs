@@ -39,7 +39,7 @@ public class SimpleFacer : MonoBehaviour
   void SetNodeRotation(Transform rotationNode, float angle)
   {
     var localEulerAngles = rotationNode.localEulerAngles;
-    localEulerAngles.z = m_AngleOffset - angle;
+    localEulerAngles.z = angle + m_AngleOffset;
     rotationNode.localEulerAngles = localEulerAngles;
   }
 }
