@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
 {
-  public Orientation2D m_Orientation = Orientation2D.YForward;
+  public Orientation3D m_Orientation = Orientation3D.PosXForward;
 
   private Rigidbody2D m_RB;
   [SerializeField]
@@ -12,8 +12,12 @@ public class Projectile : MonoBehaviour
 
   private Vector2 Forward => m_Orientation switch
   {
-    Orientation2D.XForward => transform.right,
-    _                      => transform.up,
+    Orientation3D.PosXForward => transform.right,
+    Orientation3D.NegXForward => -transform.right,
+    Orientation3D.PosYForward => transform.up,
+    Orientation3D.NegYForward => -transform.up,
+    Orientation3D.PosZForward => transform.forward,
+    _                         => -transform.forward,
   };
 
 

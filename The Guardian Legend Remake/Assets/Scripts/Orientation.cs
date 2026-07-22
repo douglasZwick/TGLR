@@ -1,12 +1,17 @@
 public enum Orientation2D
 {
-  XForward,
-  YForward,
+  PosXForward,
+  NegXForward,
+  PosYForward,
+  NegYForward,
 }
 
 public enum Orientation3D
 {
-  XForward,
-  YForward,
-  ZForward,
+  PosXForward,
+  NegXForward,
+  PosYForward,
+  NegYForward,
+  PosZForward,
+  NegZForward,
 }

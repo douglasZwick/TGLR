@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,17 +14,20 @@ public class BasicGun : MonoBehaviour
     public FireEvent DidFire;
   }
 
+  private readonly static string s_FiringGroupTag = "FiringGroup";
+  private readonly static string s_FiringPointTag = "FiringPoint";
+
   public float m_BulletSpeed = 10;
   public ClusterMember m_BulletPrefab;
   public float m_CooldownDuration = 0.25f;
   public int m_MaxClusters = 4;
-  public List<ClusterPattern> m_FiringPattern;
 
   [SerializeField]
-  private Transform m_RotationNode;
+  private Transform m_GunBaseNode;
   private InputAction m_PrimaryFireAction;
   private float m_CooldownTimer = float.PositiveInfinity;
   private HashSet<BulletCluster> m_CurrentClusters = new();
+  private List<List<Transform>> m_FiringPattern = new();
   private int m_PatternIndex = 0;
 
   private bool ClusterAvailable => m_CurrentClusters.Count < m_MaxClusters;
@@ -35,6 +40,8 @@ public class BasicGun : MonoBehaviour
   {
     var playerInput = GetComponent<PlayerInput>();
     m_PrimaryFireAction = playerInput.actions.FindAction("PrimaryFire");
+
+    InitializeClusterPatterns();
   }
 
 
@@ -44,6 +51,36 @@ public class BasicGun : MonoBehaviour
       AttemptFire();
 
     CoolDown(Time.deltaTime);
+  }
+
+
+  void InitializeClusterPatterns()
+  {
+    var groups = m_GunBaseNode.Cast<Transform>()
+      .Where(child => child.CompareTag(s_FiringGroupTag));
+    foreach (var parent in groups)
+    {
+      var group = parent.Cast<Transform>().Where(child => child.CompareTag(s_FiringPointTag));
+      m_FiringPattern.Add(group.ToList());
+    }
+
+    // foreach (Transform child in m_GunBaseNode)
+    // {
+    //   if (child.CompareTag(s_FiringGroupTag))
+    //   {
+    //     var firingGroup = new List<Transform>();
+
+    //     foreach (Transform grandchild in child)
+    //     {
+    //       if (grandchild.CompareTag(s_FiringPointTag))
+    //       {
+    //         firingGroup.Add(grandchild);
+    //       }
+    //     }
+
+    //     m_FiringPattern.Add(firingGroup);
+    //   }
+    // }
   }
 
 
@@ -79,19 +116,7 @@ public class BasicGun : MonoBehaviour
 
     foreach (var firingPoint in firingPoints)
     {
-      // TODO:
-      //   I think I SHOULD use transformation to convert these firing points, but I can't be
-      //   arsed just now to figure out how, so I'm going to do it this more naive way for now
-
-      // ALSO:
-      //   This is gonna be extremely hard coded at first. I have to map the Y-axis rotation of the
-      //   rotation node to the Z-axis rotation of the bullet. I'm gonna have to come up with a
-      //   better long-term solution at some point, but I'll let it slide for now.
-
-      var angle = m_RotationNode.localEulerAngles.z + firingPoint.m_Rotation.eulerAngles.z;
-      var bulletWorldPosition = m_RotationNode.TransformPoint(firingPoint.m_Position);
-      var rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
-      var bullet = Instantiate(m_BulletPrefab, bulletWorldPosition, rotation);
+      var bullet = Instantiate(m_BulletPrefab, firingPoint.position, firingPoint.rotation);
       cluster.Add(bullet);
       var projectile = bullet.GetComponent<Projectile>();
       projectile.Setup(m_BulletSpeed);

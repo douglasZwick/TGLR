@@ -1,18 +1,20 @@
 using UnityEngine;
 
 
+// TODO:
+//   Refactor with EmissiveColorOverride to use inheritance
 [RequireComponent(typeof(Renderer))]
 [ExecuteAlways]
-public class EmissiveColorOverride : MonoBehaviour
+public class BaseColorOverride : MonoBehaviour
 {
-  private static readonly int s_EmissiveColorId = Shader.PropertyToID("_EmissiveColor");
-  private static readonly float s_IntensityExponent = 1.25f;
+  private static readonly int s_BaseColorId = Shader.PropertyToID("_BaseColor");
+  private static readonly int s_ColorId = Shader.PropertyToID("_Color");
+  private static readonly int s_UnlitColorId = Shader.PropertyToID("_UnlitColor");
 
   [SerializeField]
-  private Color m_EmissiveColor = Color.softYellow;
-  [SerializeField]
-  private float m_EmissionIntensity = 10;
-
+  private Color m_BaseColor = Color.white;
+  
+  
   private Renderer m_Renderer;
   private MaterialPropertyBlock m_PropertyBlock;
 
@@ -22,7 +24,7 @@ public class EmissiveColorOverride : MonoBehaviour
     Apply();
   }
 
-
+  
   void OnValidate()
   {
     Apply();
@@ -37,11 +39,10 @@ public class EmissiveColorOverride : MonoBehaviour
 
     if (m_Renderer == null) return; // probably not possible thanks to RequireComponent
 
-    var curvedIntensity = Mathf.Pow(s_IntensityExponent, m_EmissionIntensity);
-    var finalColor = m_EmissiveColor * curvedIntensity;
-
     m_Renderer.GetPropertyBlock(m_PropertyBlock);
-    m_PropertyBlock.SetColor(s_EmissiveColorId, finalColor);
+    m_PropertyBlock.SetColor(s_BaseColorId, m_BaseColor);
+    m_PropertyBlock.SetColor(s_ColorId, m_BaseColor);
+    m_PropertyBlock.SetColor(s_UnlitColorId, m_BaseColor);
     m_Renderer.SetPropertyBlock(m_PropertyBlock);
   }
 }
