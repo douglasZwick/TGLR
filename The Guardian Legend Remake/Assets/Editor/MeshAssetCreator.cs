@@ -315,6 +315,102 @@ public static class MeshAssetCreator
     CreateHelper(assetName, verts, tris);
   }
 
+  
+  [MenuItem("Tools/Create Meshes/Create Octahedron")]
+  private static void CreateOctahedron()
+  {
+    const string assetName = "Octahedron";
+
+    var faces = 8;
+    var vertsPerFace = 3;
+    var verts = new Vector3[faces * vertsPerFace];
+    var tris = new int[faces * vertsPerFace];
+
+    var radius = 0.5f;
+    var vr = Vector3.right * radius;
+    var vl = Vector3.left * radius;
+    var vu = Vector3.up * radius;
+    var vd = Vector3.down * radius;
+    var vf = Vector3.forward * radius;
+    var vb = Vector3.back * radius;
+
+    verts[ 0] = vr;
+    verts[ 1] = vu;
+    verts[ 2] = vf;
+
+    verts[ 3] = vf;
+    verts[ 4] = vu;
+    verts[ 5] = vl;
+    
+    verts[ 6] = vl;
+    verts[ 7] = vu;
+    verts[ 8] = vb;
+
+    verts[ 9] = vb;
+    verts[10] = vu;
+    verts[11] = vr;
+
+    verts[12] = vr;
+    verts[13] = vd;
+    verts[14] = vb;
+
+    verts[15] = vb;
+    verts[16] = vd;
+    verts[17] = vl;
+
+    verts[18] = vl;
+    verts[19] = vd;
+    verts[20] = vf;
+
+    verts[21] = vf;
+    verts[22] = vd;
+    verts[23] = vr;
+
+    for (var i = 0; i < tris.Length; ++i)
+      tris[i] = i;
+
+    CreateHelper(assetName, verts, tris);
+  }
+
+
+  [MenuItem("Tools/Create Meshes/Create Octahedron Octant")]
+  private static void CreateOctahedronOctant()
+  {
+    const string assetName = "Octant";
+
+    var faces = 4;
+    var vertsPerFace = 3;
+    var verts = new Vector3[faces * vertsPerFace];
+    var tris = new int[faces * vertsPerFace];
+
+    var radius = 0.5f;
+    var vr = Vector3.right * radius;
+    var vu = Vector3.up * radius;
+    var vf = Vector3.forward * radius;
+    var vc = Vector3.zero;
+
+    verts[ 0] = vr;
+    verts[ 1] = vu;
+    verts[ 2] = vf;
+
+    verts[ 3] = vf;
+    verts[ 4] = vu;
+    verts[ 5] = vc;
+
+    verts[ 6] = vc;
+    verts[ 7] = vu;
+    verts[ 8] = vr;
+
+    verts[ 9] = vr;
+    verts[10] = vf;
+    verts[11] = vc;
+
+    for (var i = 0; i < tris.Length; ++i)
+      tris[i] = i;
+
+    CreateHelper(assetName, verts, tris);
+  }
+
 
   private static void CreateHelper(string assetName, Vector3[] verts, int[] tris)
   {
