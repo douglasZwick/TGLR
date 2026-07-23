@@ -42,3 +42,14 @@ public class ScrollEventData
   public float m_Acceleration;
   public Vector2 m_Direction;
 }
+
+
+[System.Serializable]
+public class HealthEvent : UnityEvent<HealthEventData> { }
+
+public class HealthEventData
+{
+  public float m_ShieldDelta;
+  public float m_HpDelta;
+  public DamageType m_Type;
+}
