@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &275550784232198687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7123919100501232561}
+  m_Layer: 11
+  m_Name: GunRotationNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7123919100501232561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275550784232198687}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3756161021758255795}
+  m_Father: {fileID: 6889121370708424637}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &477648883482558254
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +44,7 @@ GameObject:
   - component: {fileID: 4718582531972722014}
   - component: {fileID: 257024749487658627}
   - component: {fileID: 8286978148863457722}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantNxNyPz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3673092558978617680}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Graphicals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +181,7 @@ GameObject:
   - component: {fileID: 3626347171496043413}
   - component: {fileID: 3407783559721552525}
   - component: {fileID: 4581718201212756121}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantPxNyNz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +285,10 @@ GameObject:
   - component: {fileID: 6814309442662833697}
   - component: {fileID: 1354441643707676361}
   - component: {fileID: 7461648657070183012}
-  m_Layer: 0
+  - component: {fileID: 858847711841001426}
+  - component: {fileID: 1286667614452665883}
+  - component: {fileID: 924978919596083378}
+  m_Layer: 11
   m_Name: DummyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,6 +308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7123919100501232561}
   - {fileID: 3673092558978617680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -327,15 +363,36 @@ MonoBehaviour:
   m_HpMax: 3
   m_ShieldMax: 16
   m_Events:
-    DamageRequested:
-      m_PersistentCalls:
-        m_Calls: []
     ReceivedShieldDamage:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1286667614452665883}
+          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
+          m_MethodName: OnReceivedShieldDamage
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     ReceivedHpDamage:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1286667614452665883}
+          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
+          m_MethodName: OnReceivedHpDamage
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     ShieldDepleted:
       m_PersistentCalls:
         m_Calls: []
@@ -363,10 +420,10 @@ MonoBehaviour:
     ReceivedHpHeal:
       m_PersistentCalls:
         m_Calls: []
-    ShieldRestored:
+    ShieldFilled:
       m_PersistentCalls:
         m_Calls: []
-    HpRestored:
+    HpFilled:
       m_PersistentCalls:
         m_Calls: []
 --- !u!114 &7461648657070183012
@@ -381,6 +438,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f2d95c3e1806c4b8f0133348d4be49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDied
+--- !u!114 &858847711841001426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308268633276255667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a187d2e1faee82e4e8f192aac4e2e273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DummyCannon
+  m_ShotTimings:
+  - 0.5
+  - 0.75
+  - 1
+  - 1.5
+  - 1.75
+  - 2
+  m_Period: 2.5
+  m_BulletPrefab: {fileID: 1319500484872193347, guid: 4ee488a463493184998f0e3e415fd409, type: 3}
+  m_BulletSpeed: 10
+  m_FiringPoint: {fileID: 3756161021758255795}
+  m_ShootSound: {fileID: 11400000, guid: 32e28818647f5d24fb37356dde870faa, type: 2}
+  m_Noisy: 0
+--- !u!114 &1286667614452665883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308268633276255667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398c06a0b9a14484fb0212014529411f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorDamageFlash
+  m_ShieldFlash:
+    m_Material: {fileID: 2100000, guid: 3f90c0249e34c164db9a4d6301affc01, type: 2}
+    m_Color: {r: 0.9019608, g: 0.93333334, b: 1, a: 1}
+  m_HpFlash:
+    m_Material: {fileID: 2100000, guid: bac9e7113be3b454eabc07122fb3eae4, type: 2}
+    m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Targets:
+  - {fileID: 1191241915892446905}
+  - {fileID: 5152137427198163469}
+  - {fileID: 504076215389756698}
+  - {fileID: 257024749487658627}
+  - {fileID: 4861938611398238191}
+  - {fileID: 7261906022288380942}
+  - {fileID: 3407783559721552525}
+  - {fileID: 7403668146739741954}
+--- !u!114 &924978919596083378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308268633276255667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fca999c3375aaf40966a25128f96b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSounds
+  m_ShieldDamageSound: {fileID: 11400000, guid: 5385f83c4df44ab439e946bb93575a25, type: 2}
+  m_HpDamageSound: {fileID: 11400000, guid: 5385f83c4df44ab439e946bb93575a25, type: 2}
+  m_DeathSound: {fileID: 11400000, guid: ba3f77e209a933d4dbd08b5ee388bcce, type: 2}
 --- !u!1 &2974913892704844227
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +517,7 @@ GameObject:
   - component: {fileID: 3252558744597121396}
   - component: {fileID: 4861938611398238191}
   - component: {fileID: 1873065837370135357}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantPxPyNz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +621,7 @@ GameObject:
   - component: {fileID: 2306469835524527259}
   - component: {fileID: 7403668146739741954}
   - component: {fileID: 3087730499744282221}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantNxNyNz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2963538834717611072}
   - component: {fileID: 6418162728553124981}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +775,7 @@ GameObject:
   - component: {fileID: 7828629608714941989}
   - component: {fileID: 504076215389756698}
   - component: {fileID: 8950812828059367550}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantPxNyPz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5655912455276578774}
   - component: {fileID: 2258619219806400730}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Nz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +929,7 @@ GameObject:
   - component: {fileID: 2449093481527485988}
   - component: {fileID: 7261906022288380942}
   - component: {fileID: 8948746660393648249}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantNxPyNz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +1033,7 @@ GameObject:
   - component: {fileID: 3632357864005968855}
   - component: {fileID: 1191241915892446905}
   - component: {fileID: 3364634567677925304}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantPxPyPz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,7 +1137,7 @@ GameObject:
   - component: {fileID: 497003983731642392}
   - component: {fileID: 5152137427198163469}
   - component: {fileID: 2031854578689812819}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OctantNxPyPz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,3 +1229,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseColorOverride
   m_BaseColor: {r: 0.28627452, g: 0.7294118, b: 0.9490196, a: 1}
+--- !u!1001 &6605572827737348760
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7123919100501232561}
+    m_Modifications:
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8121758732315523501, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+      propertyPath: m_Name
+      value: FiringPoint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+--- !u!4 &3756161021758255795 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8037559678908000299, guid: 6c8ec152e842217458c350e5de2571b8, type: 3}
+  m_PrefabInstance: {fileID: 6605572827737348760}
+  m_PrefabAsset: {fileID: 0}

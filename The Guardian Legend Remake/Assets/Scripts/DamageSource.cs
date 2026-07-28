@@ -24,7 +24,7 @@ public class DamageSource : MonoBehaviour
   public void RequestDamage(Health receiver)
   {
     var healthED = CreateHealthEventData();
-    receiver.m_Events.DamageRequested.Invoke(healthED);
+    receiver.RequestDamage(healthED);
   }
 
 

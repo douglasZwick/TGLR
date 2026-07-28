@@ -325,13 +325,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1506040135956623597}
-  - component: {fileID: 5955866040487189390}
   - component: {fileID: 1835042705609216453}
+  - component: {fileID: 8560488766137770577}
+  - component: {fileID: 5955866040487189390}
+  - component: {fileID: 6733432023503375058}
   - component: {fileID: 3362146076280226106}
   - component: {fileID: 5587741762263774267}
-  - component: {fileID: 6733432023503375058}
+  - component: {fileID: 4060013385341105933}
   - component: {fileID: 7141368927070011835}
-  - component: {fileID: 8560488766137770577}
+  - component: {fileID: 1977028258292569750}
+  - component: {fileID: 1308729620139288345}
   m_Layer: 10
   m_Name: TopDownHero
   m_TagString: Untagged
@@ -356,6 +359,69 @@ Transform:
   - {fileID: 7424168318377528221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1835042705609216453
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!58 &8560488766137770577
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.42
 --- !u!114 &5955866040487189390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,33 +452,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!50 &1835042705609216453
-Rigidbody2D:
-  serializedVersion: 5
+--- !u!114 &6733432023503375058
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2790449705323218029}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 0
-  m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b5594ed89ae9541bfe8c7236f2659f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!114 &3362146076280226106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +512,7 @@ MonoBehaviour:
   m_RotationNodes:
   - {fileID: 7018158965388336730}
   - {fileID: 7424168318377528221}
---- !u!114 &6733432023503375058
+--- !u!114 &4060013385341105933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -470,9 +521,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 2790449705323218029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12b5594ed89ae9541bfe8c7236f2659f, type: 3}
+  m_Script: {fileID: 11500000, guid: b7bb85c8a788dc4419cbf362ae142834, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  m_HpMax: 3
+  m_ShieldMax: 64
+  m_Events:
+    ReceivedShieldDamage:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1977028258292569750}
+          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
+          m_MethodName: OnReceivedShieldDamage
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    ReceivedHpDamage:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1977028258292569750}
+          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
+          m_MethodName: OnReceivedHpDamage
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    ShieldDepleted:
+      m_PersistentCalls:
+        m_Calls: []
+    Died:
+      m_PersistentCalls:
+        m_Calls: []
+    HealRequested:
+      m_PersistentCalls:
+        m_Calls: []
+    ReceivedShieldHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ReceivedHpHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldFilled:
+      m_PersistentCalls:
+        m_Calls: []
+    HpFilled:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &7141368927070011835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,47 +594,47 @@ MonoBehaviour:
   m_BulletPrefab: {fileID: 9210784394975165092, guid: a3b736cc58b7bb2478054c097732cf54, type: 3}
   m_CooldownDuration: 0.25
   m_MaxClusters: 4
+  m_ShootSound: {fileID: 11400000, guid: 7ac6e6b0c144b6c42a7d2e9d963e245d, type: 2}
   m_GunBaseNode: {fileID: 7424168318377528221}
   m_Events:
     DidFire:
       m_PersistentCalls:
         m_Calls: []
---- !u!58 &8560488766137770577
-CircleCollider2D:
+--- !u!114 &1977028258292569750
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2790449705323218029}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.42
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398c06a0b9a14484fb0212014529411f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorDamageFlash
+  m_ShieldFlash:
+    m_Material: {fileID: 2100000, guid: 3f90c0249e34c164db9a4d6301affc01, type: 2}
+    m_Color: {r: 0.9019608, g: 0.93333334, b: 1, a: 1}
+  m_HpFlash:
+    m_Material: {fileID: 2100000, guid: bac9e7113be3b454eabc07122fb3eae4, type: 2}
+    m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Targets:
+  - {fileID: 1226824076730776543}
+--- !u!114 &1308729620139288345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fca999c3375aaf40966a25128f96b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSounds
+  m_ShieldDamageSound: {fileID: 11400000, guid: b0502eaaa1e6cab46afdf1f26395e9ea, type: 2}
+  m_HpDamageSound: {fileID: 11400000, guid: b0502eaaa1e6cab46afdf1f26395e9ea, type: 2}
+  m_DeathSound: {fileID: 0}
 --- !u!1 &3405645095827148436
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623792148473012707}
   - component: {fileID: 8435023241642666589}
-  - component: {fileID: 5110464935193982863}
+  - component: {fileID: 1226824076730776543}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -913,7 +1018,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6985199785202235128}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5110464935193982863
+--- !u!23 &1226824076730776543
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -21,6 +21,8 @@ public class BasicGun : MonoBehaviour
   public ClusterMember m_BulletPrefab;
   public float m_CooldownDuration = 0.25f;
   public int m_MaxClusters = 4;
+  [SerializeField]
+  private AudioItem m_ShootSound;
 
   [SerializeField]
   private Transform m_GunBaseNode;
@@ -58,29 +60,12 @@ public class BasicGun : MonoBehaviour
   {
     var groups = m_GunBaseNode.Cast<Transform>()
       .Where(child => child.CompareTag(s_FiringGroupTag));
+      
     foreach (var parent in groups)
     {
       var group = parent.Cast<Transform>().Where(child => child.CompareTag(s_FiringPointTag));
       m_FiringPattern.Add(group.ToList());
     }
-
-    // foreach (Transform child in m_GunBaseNode)
-    // {
-    //   if (child.CompareTag(s_FiringGroupTag))
-    //   {
-    //     var firingGroup = new List<Transform>();
-
-    //     foreach (Transform grandchild in child)
-    //     {
-    //       if (grandchild.CompareTag(s_FiringPointTag))
-    //       {
-    //         firingGroup.Add(grandchild);
-    //       }
-    //     }
-
-    //     m_FiringPattern.Add(firingGroup);
-    //   }
-    // }
   }
 
 
@@ -121,6 +106,8 @@ public class BasicGun : MonoBehaviour
       var projectile = bullet.GetComponent<Projectile>();
       projectile.Setup(m_BulletSpeed);
     }
+
+    AudioManager.Instance.Play(m_ShootSound);
 
     m_CurrentClusters.Add(cluster);
 

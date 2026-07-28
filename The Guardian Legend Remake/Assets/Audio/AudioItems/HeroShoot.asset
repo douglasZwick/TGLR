@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa3128e2c616804fa1d8aa2127db8a1, type: 3}
+  m_Name: HeroShoot
+  m_EditorClassIdentifier: Assembly-CSharp::AudioItem
+  m_Clips:
+  - {fileID: 8300000, guid: 93f5ba195a533d14d919903c4017959d, type: 3}
+  m_OverlapStrategy: 0
+  m_SelectionStrategy: 1
+  m_Index: 0

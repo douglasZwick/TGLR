@@ -45,4 +45,14 @@ public class BaseColorOverride : MonoBehaviour
     m_PropertyBlock.SetColor(s_UnlitColorId, m_BaseColor);
     m_Renderer.SetPropertyBlock(m_PropertyBlock);
   }
+  
+
+  public Color GetColor() => m_BaseColor;
+
+
+  public void SetColor(Color color)
+  {
+    m_BaseColor = color;
+    Apply();
+  }
 }
