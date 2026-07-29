@@ -398,19 +398,7 @@ MonoBehaviour:
         m_Calls: []
     Died:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7461648657070183012}
-          m_TargetAssemblyTypeName: DestroyOnDied, Assembly-CSharp
-          m_MethodName: OnDied
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     HealRequested:
       m_PersistentCalls:
         m_Calls: []
@@ -438,6 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f2d95c3e1806c4b8f0133348d4be49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDied
+  m_EventSourceHealth: {fileID: 0}
+  m_DestructionTarget: {fileID: 0}
 --- !u!114 &858847711841001426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +448,7 @@ MonoBehaviour:
   - 1.75
   - 2
   m_Period: 2.5
-  m_BulletPrefab: {fileID: 1319500484872193347, guid: 4ee488a463493184998f0e3e415fd409, type: 3}
+  m_BulletPrefab: {fileID: 6393235308069372917, guid: 3f8325c86f3fb7b41bbf0dc93582022e, type: 3}
   m_BulletSpeed: 10
   m_FiringPoint: {fileID: 3756161021758255795}
   m_ShootSound: {fileID: 11400000, guid: 32e28818647f5d24fb37356dde870faa, type: 2}

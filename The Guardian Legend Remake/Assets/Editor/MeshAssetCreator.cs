@@ -412,6 +412,190 @@ public static class MeshAssetCreator
   }
 
 
+  [MenuItem("Tools/Create Meshes/Create Isosceles Prism")]
+  private static void CreateIsoscelesPrism()
+  {
+    const string assetName = "IsoscelesPrism";
+
+    var triFaces = 2;
+    var quadFaces = 3;
+    var vertsPerTriFace = 3;
+    var vertsPerQuadFace = 4;
+    var trisPerQuad = 2;
+    var verts = new Vector3[triFaces * vertsPerTriFace + quadFaces * vertsPerQuadFace];
+    var tris = new int[vertsPerTriFace * (triFaces + quadFaces * trisPerQuad)];
+
+    //*
+    // 
+    //   Here's how it's laid out:
+    // 
+    // +Y axis            
+    //    ^          ^
+    //    |        /  \
+    //    |      ^     \
+    //    |     / \     /     
+    //    |    /   \  /
+    //    |   -------
+    //    |
+    //    +----------> +X axis
+    // 
+    // */
+
+    var baseLB = new Vector3(-0.5f, 0, -0.5f);
+    var baseRB = new Vector3( 0.5f, 0, -0.5f);
+    var baseLF = new Vector3(-0.5f, 0,  0.5f);
+    var baseRF = new Vector3( 0.5f, 0,  0.5f);
+    var topB   = new Vector3( 0,    1, -0.5f);
+    var topF   = new Vector3( 0,    1,  0.5f);
+
+    // Base
+    verts[ 0] = baseLB;
+    verts[ 1] = baseRB;
+    verts[ 2] = baseLF;
+    verts[ 3] = baseRF;
+
+    tris[ 0] = 0;
+    tris[ 1] = 1;
+    tris[ 2] = 2;
+
+    tris[ 3] = 2;
+    tris[ 4] = 1;
+    tris[ 5] = 3;
+
+    // Left diagonal face
+    verts[ 4] = baseLF;
+    verts[ 5] = baseLB;
+    verts[ 6] = topF;
+    verts[ 7] = topB;
+
+    tris[ 6] = 6;
+    tris[ 7] = 7;
+    tris[ 8] = 4;
+    
+    tris[ 9] = 4;
+    tris[10] = 7;
+    tris[11] = 5;
+
+    // Right diagonal face
+    verts[ 8] = baseRB;
+    verts[ 9] = baseRF;
+    verts[10] = topB;
+    verts[11] = topF;
+
+    tris[12] = 10;
+    tris[13] = 11;
+    tris[14] = 8;
+    
+    tris[15] = 8;
+    tris[16] = 11;
+    tris[17] = 9;
+
+    // Back triangle
+    verts[12] = baseLB;
+    verts[13] = topB;
+    verts[14] = baseRB;
+
+    tris[18] = 12;
+    tris[19] = 13;
+    tris[20] = 14;
+
+    // Front triangle
+    verts[15] = baseRF;
+    verts[16] = topF;
+    verts[17] = baseLF;
+
+    tris[21] = 15;
+    tris[22] = 16;
+    tris[23] = 17;
+
+    CreateHelper(assetName, verts, tris);    
+  }
+
+
+  [MenuItem("Tools/Create Meshes/Create Wedge")]
+  private static void CreateWedge()
+  {
+    const string assetName = "Wedge";
+
+    var triFaces = 2;
+    var quadFaces = 3;
+    var vertsPerTriFace = 3;
+    var vertsPerQuadFace = 4;
+    var trisPerQuad = 2;
+    var verts = new Vector3[triFaces * vertsPerTriFace + quadFaces * vertsPerQuadFace];
+    var tris = new int[vertsPerTriFace * (triFaces + quadFaces * trisPerQuad)];
+
+    var baseLB = new Vector3(-0.5f, 0, -0.5f);
+    var baseRB = new Vector3( 0.5f, 0, -0.5f);
+    var baseLF = new Vector3(-0.5f, 0,  0.5f);
+    var baseRF = new Vector3( 0.5f, 0,  0.5f);
+    var topB   = new Vector3( 0.5f, 1, -0.5f);
+    var topF   = new Vector3( 0.5f, 1,  0.5f);
+
+    // Base
+    verts[ 0] = baseLB;
+    verts[ 1] = baseRB;
+    verts[ 2] = baseLF;
+    verts[ 3] = baseRF;
+
+    tris[ 0] = 0;
+    tris[ 1] = 1;
+    tris[ 2] = 2;
+
+    tris[ 3] = 2;
+    tris[ 4] = 1;
+    tris[ 5] = 3;
+
+    // Left diagonal face
+    verts[ 4] = baseLF;
+    verts[ 5] = baseLB;
+    verts[ 6] = topF;
+    verts[ 7] = topB;
+
+    tris[ 6] = 6;
+    tris[ 7] = 7;
+    tris[ 8] = 4;
+    
+    tris[ 9] = 4;
+    tris[10] = 7;
+    tris[11] = 5;
+
+    // Right diagonal face
+    verts[ 8] = baseRB;
+    verts[ 9] = baseRF;
+    verts[10] = topB;
+    verts[11] = topF;
+
+    tris[12] = 10;
+    tris[13] = 11;
+    tris[14] = 8;
+    
+    tris[15] = 8;
+    tris[16] = 11;
+    tris[17] = 9;
+
+    // Back triangle
+    verts[12] = baseLB;
+    verts[13] = topB;
+    verts[14] = baseRB;
+
+    tris[18] = 12;
+    tris[19] = 13;
+    tris[20] = 14;
+
+    // Front triangle
+    verts[15] = baseRF;
+    verts[16] = topF;
+    verts[17] = baseLF;
+
+    tris[21] = 15;
+    tris[22] = 16;
+    tris[23] = 17;
+
+    CreateHelper(assetName, verts, tris);    
+  }
+
+
   private static void CreateHelper(string assetName, Vector3[] verts, int[] tris)
   {
     const string folderPath = "Assets/Meshes";

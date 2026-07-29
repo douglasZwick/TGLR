@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 
@@ -51,7 +50,7 @@ public class DummyCannon : MonoBehaviour
     var bullet = Instantiate(m_BulletPrefab, m_FiringPoint.position, m_FiringPoint.rotation);
     bullet.Setup(m_BulletSpeed);
 
-    // AudioManager.Instance.Play(m_ShootSound);
+    AudioManager.Instance.Play(m_ShootSound);
   }
 
 
