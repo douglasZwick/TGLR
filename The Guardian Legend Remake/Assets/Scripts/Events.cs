@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public sealed class EventKey<TData> { }
+public abstract class EventKey { }
+public sealed class EventKey<TData> : EventKey { }
 
 
 [System.Serializable]

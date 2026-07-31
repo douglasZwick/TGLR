@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class CameraShaker : MonoBehaviour
 {
   [SerializeField]
-  private Transform m_ShakeNode;
+  Transform m_ShakeNode;
   [SerializeField]
   // How much trauma should be removed per second
   float m_TraumaReductionRate = 1.0f;
@@ -27,6 +26,8 @@ public class CameraShaker : MonoBehaviour
   float m_ThetaBand = 100;
   [SerializeField]
   float m_RotationBand = 200;
+  [SerializeField]
+  EventChannel m_Dispatcher;
 
   private float m_Trauma;
   private float m_Timer = 0;
@@ -42,6 +43,8 @@ public class CameraShaker : MonoBehaviour
   {
     if (m_ShakeNode == null)
       m_ShakeNode = transform;
+    
+    m_Dispatcher.AddListener(ShakeEvents.ShakeRequest, OnShakeRequest);
   }
 
 
@@ -53,6 +56,12 @@ public class CameraShaker : MonoBehaviour
       Shake(dt);
 
     m_Timer += dt * m_NoiseFrequency;
+  }
+
+
+  private void OnShakeRequest(ShakeEventData shakeED)
+  {
+    BeginShaking(shakeED.m_Trauma);
   }
 
 

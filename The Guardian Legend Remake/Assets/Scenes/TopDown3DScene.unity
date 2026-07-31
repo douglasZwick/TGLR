@@ -905,6 +905,7 @@ MonoBehaviour:
   m_RBand: 0
   m_ThetaBand: 100
   m_RotationBand: 200
+  m_Dispatcher: {fileID: 11400000, guid: de4b456f4ac9d8a4e8ea01dc4a17d958, type: 2}
 --- !u!1 &744519389
 GameObject:
   m_ObjectHideFlags: 0

@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 7141368927070011835}
   - component: {fileID: 1977028258292569750}
   - component: {fileID: 1308729620139288345}
+  - component: {fileID: 9045260652637716572}
   m_Layer: 10
   m_Name: TopDownHero
   m_TagString: Untagged
@@ -635,6 +636,21 @@ MonoBehaviour:
   m_ShieldDamageSound: {fileID: 11400000, guid: b0502eaaa1e6cab46afdf1f26395e9ea, type: 2}
   m_HpDamageSound: {fileID: 11400000, guid: b0502eaaa1e6cab46afdf1f26395e9ea, type: 2}
   m_DeathSound: {fileID: 0}
+--- !u!114 &9045260652637716572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b386618b5cbfacc428ecadb853da494f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShakeOnDamage
+  m_Dispatcher: {fileID: 11400000, guid: de4b456f4ac9d8a4e8ea01dc4a17d958, type: 2}
+  m_ShieldDamageTrauma: 0.5
+  m_HpDamageTrauma: 1
 --- !u!1 &3405645095827148436
 GameObject:
   m_ObjectHideFlags: 0
