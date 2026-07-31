@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
     if (item.OverlapStrategy == AudioItem.OverlapStrategyOptions.Interrupt)
       source.Stop();
     
-    source.PlayOneShot(clip);
+    source.PlayOneShot(clip, item.Volume);
   }
 
 

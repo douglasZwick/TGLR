@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
+public sealed class EventKey<TData> { }
+
+
 [System.Serializable]
 public class FireEvent : UnityEvent<FireEventData> { }
 
@@ -52,4 +55,15 @@ public class HealthEventData
   public float m_ShieldDelta;
   public float m_HpDelta;
   public DamageType m_Type;
+}
+
+
+public class ShakeEventData
+{
+  public float m_Trauma;
+}
+
+public static class ShakeEvents
+{
+  public static readonly EventKey<ShakeEventData> ShakeRequest = new();
 }

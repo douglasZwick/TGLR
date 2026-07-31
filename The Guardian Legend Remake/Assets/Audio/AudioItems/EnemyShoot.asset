@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioItem
   m_Clips:
   - {fileID: 8300000, guid: 88eacb03db0561c41ac4bf2c1f5ba39e, type: 3}
+  m_Volume: 0.5
   m_OverlapStrategy: 0
   m_SelectionStrategy: 1
   m_Index: 0

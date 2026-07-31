@@ -22,6 +22,8 @@ public class AudioItem : ScriptableObject
 
   [SerializeField]
   private List<AudioClip> m_Clips = new();
+  [SerializeField][Range(min: 0, max: 1)]
+  private float m_Volume = 1;
   [SerializeField]
   private OverlapStrategyOptions m_OverlapStrategy = OverlapStrategyOptions.Interrupt;
   // [SerializeField, Min(1)]
@@ -33,6 +35,7 @@ public class AudioItem : ScriptableObject
   private int m_Index = 0;
 
   public IReadOnlyList<AudioClip> Clips => m_Clips;
+  public float Volume => m_Volume;
   public SelectionStrategyOptions SelectionStrategy => m_SelectionStrategy;
   public OverlapStrategyOptions OverlapStrategy => m_OverlapStrategy;
   public int Index => m_Index;
