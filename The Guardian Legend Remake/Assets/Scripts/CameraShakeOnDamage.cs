@@ -17,8 +17,8 @@ public class CameraShakeOnDamage : MonoBehaviour
   void OnEnable()
   {
     m_Health = GetComponent<Health>();
-    m_Health.m_Events.ReceivedShieldDamage.AddListener(OnReceivedShieldDamage);
-    m_Health.m_Events.ReceivedHpDamage.AddListener(OnReceivedHpDamage);
+    m_Health.m_Events.ShieldReceivedDamage.AddListener(OnReceivedShieldDamage);
+    m_Health.m_Events.HpReceivedDamage.AddListener(OnReceivedHpDamage);
   }
 
 
@@ -47,7 +47,7 @@ public class CameraShakeOnDamage : MonoBehaviour
 
   void OnDisable()
   {
-    m_Health.m_Events.ReceivedShieldDamage.RemoveListener(OnReceivedShieldDamage);
-    m_Health.m_Events.ReceivedHpDamage.RemoveListener(OnReceivedHpDamage);
+    m_Health.m_Events.ShieldReceivedDamage.RemoveListener(OnReceivedShieldDamage);
+    m_Health.m_Events.HpReceivedDamage.RemoveListener(OnReceivedHpDamage);
   }
 }

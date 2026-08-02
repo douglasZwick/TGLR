@@ -4,7 +4,7 @@ using UnityEditor;
 
 public static class MeshAssetCreator
 {
-  [MenuItem("Tools/Create Meshes/Create Cone")]
+  [MenuItem("Assets/Create/Mesh/Cone")]
   private static void CreateCone()
   {
     const string assetName = "Cone";
@@ -51,7 +51,7 @@ public static class MeshAssetCreator
   }
 
 
-  [MenuItem("Tools/Create Meshes/Create Pyramid")]
+  [MenuItem("Assets/Create/Mesh/Pyramid")]
   private static void CreatePyramid()
   {
     const string assetName = "Pyramid";
@@ -110,7 +110,7 @@ public static class MeshAssetCreator
   }
 
 
-  // [MenuItem("Tools/Create Meshes/Create Teardrop")]
+  // [MenuItem("Assets/Create/Mesh/Teardrop")]
   private static void CreateTeardrop()
   {
     const string assetName = "Pyramid";
@@ -133,7 +133,7 @@ public static class MeshAssetCreator
   }
 
 
-  [MenuItem("Tools/Create Meshes/Create Sphere")]
+  [MenuItem("Assets/Create/Mesh/Sphere")]
   private static void CreateSphere()
   {
     // Longitudinal bands of faces connecting the top and bottom poles
@@ -316,7 +316,7 @@ public static class MeshAssetCreator
   }
 
   
-  [MenuItem("Tools/Create Meshes/Create Octahedron")]
+  [MenuItem("Assets/Create/Mesh/Octahedron")]
   private static void CreateOctahedron()
   {
     const string assetName = "Octahedron";
@@ -373,7 +373,7 @@ public static class MeshAssetCreator
   }
 
 
-  [MenuItem("Tools/Create Meshes/Create Octahedron Octant")]
+  [MenuItem("Assets/Create/Mesh/Octahedron Octant")]
   private static void CreateOctahedronOctant()
   {
     const string assetName = "Octant";
@@ -412,7 +412,7 @@ public static class MeshAssetCreator
   }
 
 
-  [MenuItem("Tools/Create Meshes/Create Isosceles Prism")]
+  [MenuItem("Assets/Create/Mesh/Isosceles Prism")]
   private static void CreateIsoscelesPrism()
   {
     const string assetName = "IsoscelesPrism";
@@ -512,7 +512,7 @@ public static class MeshAssetCreator
   }
 
 
-  [MenuItem("Tools/Create Meshes/Create Wedge")]
+  [MenuItem("Assets/Create/Mesh/Wedge")]
   private static void CreateWedge()
   {
     const string assetName = "Wedge";

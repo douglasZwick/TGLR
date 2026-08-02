@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 1977028258292569750}
   - component: {fileID: 1308729620139288345}
   - component: {fileID: 9045260652637716572}
+  - component: {fileID: 5269713053985398160}
   m_Layer: 10
   m_Name: TopDownHero
   m_TagString: Untagged
@@ -525,58 +526,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bb85c8a788dc4419cbf362ae142834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  m_HpMax: 3
+  m_HpMax: 24
   m_ShieldMax: 64
+  m_ChangeRate: 32
   m_Events:
-    ReceivedShieldDamage:
+    ShieldReceivedDamage:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1977028258292569750}
-          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
-          m_MethodName: OnReceivedShieldDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    ReceivedHpDamage:
+        m_Calls: []
+    ShieldReceivedTerminalDamage:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1977028258292569750}
-          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
-          m_MethodName: OnReceivedHpDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
+    ShieldDamageUpdate:
+      m_PersistentCalls:
+        m_Calls: []
     ShieldDepleted:
+      m_PersistentCalls:
+        m_Calls: []
+    HpReceivedDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    HpReceivedTerminalDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    HpDamageUpdate:
       m_PersistentCalls:
         m_Calls: []
     Died:
       m_PersistentCalls:
         m_Calls: []
-    HealRequested:
+    HpReceivedHeal:
       m_PersistentCalls:
         m_Calls: []
-    ReceivedShieldHeal:
+    HpReceivedTotalHeal:
       m_PersistentCalls:
         m_Calls: []
-    ReceivedHpHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldFilled:
+    HpHealUpdate:
       m_PersistentCalls:
         m_Calls: []
     HpFilled:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldReceivedHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldReceivedTotalHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldHealUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldFilled:
       m_PersistentCalls:
         m_Calls: []
 --- !u!114 &7141368927070011835
@@ -651,6 +650,20 @@ MonoBehaviour:
   m_Dispatcher: {fileID: 11400000, guid: de4b456f4ac9d8a4e8ea01dc4a17d958, type: 2}
   m_ShieldDamageTrauma: 0.5
   m_HpDamageTrauma: 1
+--- !u!114 &5269713053985398160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56740326f0f3c24bbdd494fc3798449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthGaugeUpdater
+  m_ShieldDispatcher: {fileID: 11400000, guid: 0950cc8b5c19e42449f9e748e09c1250, type: 2}
+  m_HpDispatcher: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
 --- !u!1 &3405645095827148436
 GameObject:
   m_ObjectHideFlags: 0

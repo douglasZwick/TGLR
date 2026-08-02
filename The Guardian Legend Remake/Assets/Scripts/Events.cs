@@ -54,7 +54,11 @@ public class HealthEvent : UnityEvent<HealthEventData> { }
 public class HealthEventData
 {
   public float m_ShieldDelta;
+  public float m_CurrentShield;
+  public float m_ShieldMax;
   public float m_HpDelta;
+  public float m_CurrentHp;
+  public float m_HpMax;
   public DamageType m_Type;
 }
 
@@ -67,4 +71,20 @@ public class ShakeEventData
 public static class ShakeEvents
 {
   public static readonly EventKey<ShakeEventData> ShakeRequest = new();
+}
+
+
+public class GaugeEventData
+{
+  public float m_MaxValue;
+  public float m_StartingValue;
+  public float m_CurrentValue;
+  public float m_EndingValue;
+}
+
+public static class GaugeEvents
+{
+  public static readonly EventKey<GaugeEventData> GaugeChangeStarted = new();
+  public static readonly EventKey<GaugeEventData> GaugeUpdate = new();
+  public static readonly EventKey<GaugeEventData> GaugeChangeEnded = new();
 }

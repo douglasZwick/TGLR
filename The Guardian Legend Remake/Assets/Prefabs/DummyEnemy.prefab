@@ -360,58 +360,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bb85c8a788dc4419cbf362ae142834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  m_HpMax: 3
+  m_HpMax: 24
   m_ShieldMax: 16
+  m_ChangeRate: 4
   m_Events:
-    ReceivedShieldDamage:
+    ShieldReceivedDamage:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1286667614452665883}
-          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
-          m_MethodName: OnReceivedShieldDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    ReceivedHpDamage:
+        m_Calls: []
+    ShieldReceivedTerminalDamage:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1286667614452665883}
-          m_TargetAssemblyTypeName: ColorDamageFlash, Assembly-CSharp
-          m_MethodName: OnReceivedHpDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
+    ShieldDamageUpdate:
+      m_PersistentCalls:
+        m_Calls: []
     ShieldDepleted:
+      m_PersistentCalls:
+        m_Calls: []
+    HpReceivedDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    HpReceivedTerminalDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    HpDamageUpdate:
       m_PersistentCalls:
         m_Calls: []
     Died:
       m_PersistentCalls:
         m_Calls: []
-    HealRequested:
+    HpReceivedHeal:
       m_PersistentCalls:
         m_Calls: []
-    ReceivedShieldHeal:
+    HpReceivedTotalHeal:
       m_PersistentCalls:
         m_Calls: []
-    ReceivedHpHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldFilled:
+    HpHealUpdate:
       m_PersistentCalls:
         m_Calls: []
     HpFilled:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldReceivedHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldReceivedTotalHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldHealUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldFilled:
       m_PersistentCalls:
         m_Calls: []
 --- !u!114 &7461648657070183012
@@ -426,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f2d95c3e1806c4b8f0133348d4be49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDied
-  m_EventSourceHealth: {fileID: 0}
+  m_EventSource: {fileID: 0}
   m_DestructionTarget: {fileID: 0}
 --- !u!114 &858847711841001426
 MonoBehaviour:

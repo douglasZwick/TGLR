@@ -15,8 +15,8 @@ public class HealthSounds : MonoBehaviour
   void Awake()
   {
     var health = GetComponent<Health>();
-    health.m_Events.ReceivedShieldDamage.AddListener(OnReceivedShieldDamage);
-    health.m_Events.ReceivedHpDamage.AddListener(OnReceivedHpDamage);
+    health.m_Events.ShieldReceivedDamage.AddListener(OnReceivedShieldDamage);
+    health.m_Events.HpReceivedDamage.AddListener(OnReceivedHpDamage);
     health.m_Events.Died.AddListener(OnDied);
   }
 

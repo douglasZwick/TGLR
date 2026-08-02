@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
   m_ShieldDamageAmount: 8
-  m_HpDamageAmount: 1
+  m_HpDamageAmount: 8
   m_Type: 0
   m_Events:
     CausedShieldDamage:
@@ -577,32 +577,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   m_HpMax: 1
   m_ShieldMax: 0
+  m_ChangeRate: 100000000
   m_Events:
-    ReceivedShieldDamage:
+    ShieldReceivedDamage:
       m_PersistentCalls:
         m_Calls: []
-    ReceivedHpDamage:
+    ShieldReceivedTerminalDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldDamageUpdate:
       m_PersistentCalls:
         m_Calls: []
     ShieldDepleted:
       m_PersistentCalls:
         m_Calls: []
+    HpReceivedDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    HpReceivedTerminalDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    HpDamageUpdate:
+      m_PersistentCalls:
+        m_Calls: []
     Died:
       m_PersistentCalls:
         m_Calls: []
-    HealRequested:
+    HpReceivedHeal:
       m_PersistentCalls:
         m_Calls: []
-    ReceivedShieldHeal:
+    HpReceivedTotalHeal:
       m_PersistentCalls:
         m_Calls: []
-    ReceivedHpHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldFilled:
+    HpHealUpdate:
       m_PersistentCalls:
         m_Calls: []
     HpFilled:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldReceivedHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldReceivedTotalHeal:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldHealUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    ShieldFilled:
       m_PersistentCalls:
         m_Calls: []
 --- !u!114 &8215020432609846673
