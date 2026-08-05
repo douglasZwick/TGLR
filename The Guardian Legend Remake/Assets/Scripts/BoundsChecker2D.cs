@@ -1,16 +1,10 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 public class BoundsChecker2D : MonoBehaviour
 {
-  [System.Serializable]
-  public class Events
-  {
-    public BoundsEvent BoundsEnter;
-    public BoundsEvent BoundsIn;
-    public BoundsEvent BoundsExit;
-    public BoundsEvent BoundsOut;
-  }
+  public EventDispatcher ED { get; private set; }
 
   [SerializeField]
   private UpdateType m_UpdateType = UpdateType.None;
@@ -21,11 +15,11 @@ public class BoundsChecker2D : MonoBehaviour
   private CameraBounds2D m_Bounds;
   private bool m_PreviousInBounds = false;
 
-  public Events m_Events;
-
 
   void Awake()
   {
+    ED = GetComponent<EventDispatcher>();
+
     m_Tx = transform;
 
     // CONDITIONAL TODO:
@@ -79,17 +73,17 @@ public class BoundsChecker2D : MonoBehaviour
 
     if (inBounds)
     {
-      m_Events.BoundsIn.Invoke(boundsED);
+      ED.Dispatch(Events.BoundsIn, boundsED);
 
       if (!m_PreviousInBounds)
-        m_Events.BoundsEnter.Invoke(boundsED);
+        ED.Dispatch(Events.BoundsEnter, boundsED);
     }
     else
     {
-      m_Events.BoundsOut.Invoke(boundsED);
+      ED.Dispatch(Events.BoundsOut, boundsED);
 
       if (m_PreviousInBounds)
-        m_Events.BoundsExit.Invoke(boundsED);
+        ED.Dispatch(Events.BoundsOut, boundsED);
     }
 
     m_PreviousInBounds = inBounds;

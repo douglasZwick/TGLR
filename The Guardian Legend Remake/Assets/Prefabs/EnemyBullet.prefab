@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 4708484841953465940}
   - component: {fileID: 6280136755196851962}
   - component: {fileID: 2362906166546320338}
+  - component: {fileID: 6281251446118701197}
   - component: {fileID: 1319500484872193347}
   - component: {fileID: 5989377189336236005}
   - component: {fileID: 2895319824461921467}
@@ -238,6 +239,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.25
+--- !u!114 &6281251446118701197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401732364572026295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
 --- !u!114 &1319500484872193347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,13 +293,6 @@ MonoBehaviour:
   m_ShieldDamageAmount: 8
   m_HpDamageAmount: 8
   m_Type: 0
-  m_Events:
-    CausedShieldDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    CausedHpDamage:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &3888083200042266948
 MonoBehaviour:
   m_ObjectHideFlags: 0

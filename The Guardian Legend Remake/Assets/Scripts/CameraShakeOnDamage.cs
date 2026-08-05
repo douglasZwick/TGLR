@@ -1,24 +1,29 @@
 using UnityEngine;
 
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(EventDispatcher))]
 public class CameraShakeOnDamage : MonoBehaviour
 {
+  public EventDispatcher ED { get; private set; }
+
   [SerializeField]
-  EventChannel m_Dispatcher;
+  EventChannel m_EventChannel;
   [SerializeField]
   float m_ShieldDamageTrauma = 0.5f;
   [SerializeField]
   float m_HpDamageTrauma = 1.0f;
 
-  Health m_Health;
+
+  void Awake()
+  {
+    ED = GetComponent<EventDispatcher>();
+  }
 
 
   void OnEnable()
   {
-    m_Health = GetComponent<Health>();
-    m_Health.m_Events.ShieldReceivedDamage.AddListener(OnReceivedShieldDamage);
-    m_Health.m_Events.HpReceivedDamage.AddListener(OnReceivedHpDamage);
+    ED.AddListener(Events.ShieldReceivedDamage, OnReceivedShieldDamage);
+    ED.AddListener(Events.HpReceivedDamage, OnReceivedHpDamage);
   }
 
 
@@ -41,13 +46,13 @@ public class CameraShakeOnDamage : MonoBehaviour
       m_Trauma = trauma,
     };
 
-    m_Dispatcher.Dispatch(ShakeEvents.ShakeRequest, shakeED);
+    m_EventChannel.Dispatch(Events.ShakeRequest, shakeED);
   }
 
 
   void OnDisable()
   {
-    m_Health.m_Events.ShieldReceivedDamage.RemoveListener(OnReceivedShieldDamage);
-    m_Health.m_Events.HpReceivedDamage.RemoveListener(OnReceivedHpDamage);
+    ED.RemoveListener(Events.ShieldReceivedDamage, OnReceivedShieldDamage);
+    ED.RemoveListener(Events.HpReceivedDamage, OnReceivedHpDamage);
   }
 }

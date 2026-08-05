@@ -2,11 +2,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 public class SimpleFacer : MonoBehaviour
 {
+  public EventDispatcher ED { get; private set; }
+
   public float m_AngleOffset;
   [SerializeField]
   private List<Transform> m_RotationNodes;
+
+
+  void Awake()
+  {
+    ED = GetComponent<EventDispatcher>();
+  }
+
+
+  void OnEnable()
+  {
+    ED.AddListener(Events.MoveRequested, OnMoveRequested);
+  }
 
 
   public void OnMoveRequested(MovementEventData movementED)
@@ -41,5 +56,11 @@ public class SimpleFacer : MonoBehaviour
     var localEulerAngles = rotationNode.localEulerAngles;
     localEulerAngles.z = angle + m_AngleOffset;
     rotationNode.localEulerAngles = localEulerAngles;
+  }
+
+
+  void OnDisable()
+  {
+    ED.RemoveListener(Events.MoveRequested, OnMoveRequested);
   }
 }

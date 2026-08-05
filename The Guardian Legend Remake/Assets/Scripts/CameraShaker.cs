@@ -27,7 +27,7 @@ public class CameraShaker : MonoBehaviour
   [SerializeField]
   float m_RotationBand = 200;
   [SerializeField]
-  EventChannel m_Dispatcher;
+  EventChannel m_EventChannel;
 
   private float m_Trauma;
   private float m_Timer = 0;
@@ -44,7 +44,7 @@ public class CameraShaker : MonoBehaviour
     if (m_ShakeNode == null)
       m_ShakeNode = transform;
     
-    m_Dispatcher.AddListener(ShakeEvents.ShakeRequest, OnShakeRequest);
+    m_EventChannel.AddListener(Events.ShakeRequest, OnShakeRequest);
   }
 
 

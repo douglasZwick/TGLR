@@ -34,7 +34,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5812312509477284227
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -91,6 +91,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &803526444712037150
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -135}
 --- !u!212 &9052924973933915805
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -182,6 +183,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &2802505428500293868
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +218,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &691630397555534265
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -273,6 +275,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &4706932991746972140
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +310,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
 --- !u!212 &1371961777097682435
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -364,6 +367,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &4985742169805332837
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +402,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &756172970838330092
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -455,6 +459,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &5059638290890316205
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +533,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &168242570071478124
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -585,6 +590,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &8222611146632113706
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +625,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5544708669423450466
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -676,6 +682,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &8402077182858761067
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +694,7 @@ GameObject:
   - component: {fileID: 8908958628867094298}
   - component: {fileID: 1584763840066552919}
   - component: {fileID: 8661117956041248638}
+  - component: {fileID: 5060213146648575673}
   - component: {fileID: 6194235385830842887}
   - component: {fileID: 4196465013724515096}
   - component: {fileID: 8008485413385109227}
@@ -772,6 +780,18 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5060213146648575673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402077182858761067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
 --- !u!114 &6194235385830842887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,25 +804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3e8080d3c3f3e43b2a0a1c2983d8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KinematicMover
-  m_Events:
-    m_MoveRequested:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6980813009760390283}
-          m_TargetAssemblyTypeName: CameraConstraint2D, Assembly-CSharp
-          m_MethodName: OnMoveRequested
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    m_Moved:
-      m_PersistentCalls:
-        m_Calls: []
   m_MovementSpeed: 12
 --- !u!114 &4196465013724515096
 MonoBehaviour:
@@ -832,19 +833,8 @@ MonoBehaviour:
   m_BulletPrefab: {fileID: 9210784394975165092, guid: a3b736cc58b7bb2478054c097732cf54, type: 3}
   m_CooldownDuration: 0.25
   m_MaxClusters: 4
-  m_FiringPattern:
-  - m_Pattern:
-    - m_Position: {x: 0, y: 1}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-  - m_Pattern:
-    - m_Position: {x: -0.4, y: 1}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-    - m_Position: {x: 0.4, y: 1}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-  m_Events:
-    DidFire:
-      m_PersistentCalls:
-        m_Calls: []
+  m_ShootSound: {fileID: 0}
+  m_GunBaseNode: {fileID: 0}
 --- !u!114 &6610583080358130915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,19 +851,6 @@ MonoBehaviour:
   m_Margin:
     m_RightTop: {x: 0, y: 0}
     m_LeftBottom: {x: 0, y: 0}
-  m_Events:
-    BoundsEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    BoundsIn:
-      m_PersistentCalls:
-        m_Calls: []
-    BoundsExit:
-      m_PersistentCalls:
-        m_Calls: []
-    BoundsOut:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &6980813009760390283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +897,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &221725983880100831
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -977,3 +954,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []

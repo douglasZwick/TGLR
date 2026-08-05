@@ -283,6 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6889121370708424637}
   - component: {fileID: 6814309442662833697}
+  - component: {fileID: 1664519718124411135}
   - component: {fileID: 1354441643707676361}
   - component: {fileID: 7461648657070183012}
   - component: {fileID: 858847711841001426}
@@ -348,6 +349,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1664519718124411135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308268633276255667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
 --- !u!114 &1354441643707676361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,55 +376,6 @@ MonoBehaviour:
   m_HpMax: 24
   m_ShieldMax: 16
   m_ChangeRate: 4
-  m_Events:
-    ShieldReceivedDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedTerminalDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldDamageUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldDepleted:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedTerminalDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    HpDamageUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    Died:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedTotalHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    HpHealUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    HpFilled:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedTotalHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldHealUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldFilled:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &7461648657070183012
 MonoBehaviour:
   m_ObjectHideFlags: 0

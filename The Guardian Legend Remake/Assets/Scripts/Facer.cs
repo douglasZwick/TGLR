@@ -1,8 +1,11 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 public class Facer : MonoBehaviour
 {
+  public EventDispatcher ED { get; private set; }
+
   public Transform m_RotationRoot;
   public float m_MaxTurnDuration = 0.25f; // How long a 180-degree turn takes
 
@@ -13,6 +16,18 @@ public class Facer : MonoBehaviour
   private bool Turning => m_TurnTimer < m_MaxTurnDuration;
 
   private float Alpha => m_TurnDuration == 0 ? 1 : m_TurnTimer / m_TurnDuration;
+
+
+  void Awake()
+  {
+    ED = GetComponent<EventDispatcher>();
+  }
+
+
+  void OnEnable()
+  {
+    ED.AddListener(Events.MoveRequested, OnMoveRequested);
+  }
 
 
   void Update()
@@ -89,5 +104,11 @@ public class Facer : MonoBehaviour
   void SetRotation(float angle)
   {
     m_RotationRoot.localRotation = Quaternion.AngleAxis(angle, Vector3.up);
+  }
+
+
+  void OnDisable()
+  {
+    ED.RemoveListener(Events.MoveRequested, OnMoveRequested);
   }
 }

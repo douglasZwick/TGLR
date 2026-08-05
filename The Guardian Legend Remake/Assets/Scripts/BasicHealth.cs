@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(EventDispatcher))]
-public class #SCRIPTNAME# : MonoBehaviour
+public class BasicHealth : MonoBehaviour
 {
   public EventDispatcher ED { get; private set; }
 
@@ -15,12 +15,12 @@ public class #SCRIPTNAME# : MonoBehaviour
 
   void OnEnable()
   {
-    #NOTRIM#
+    
   }
 
 
   void OnDisable()
   {
-    #NOTRIM#
+    
   }
 }

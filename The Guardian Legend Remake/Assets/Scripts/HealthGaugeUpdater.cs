@@ -1,27 +1,33 @@
 using UnityEngine;
 
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(EventDispatcher))]
 public class HealthGaugeUpdater : MonoBehaviour
 {
+  public EventDispatcher ED { get; private set; }
+
   [SerializeField]
-  EventChannel m_ShieldDispatcher;
+  EventChannel m_ShieldChannel;
   [SerializeField]
-  EventChannel m_HpDispatcher;
+  EventChannel m_HpChannel;
 
 
   void Awake()
   {
-    var health = GetComponent<Health>();
+    ED = GetComponent<EventDispatcher>();
+  }
 
-    health.m_Events.ShieldReceivedDamage.AddListener(OnShieldReceivedDamage);
-    health.m_Events.ShieldReceivedHeal.AddListener(OnShieldReceivedHeal);
-    health.m_Events.ShieldDamageUpdate.AddListener(OnShieldUpdate);
-    health.m_Events.ShieldHealUpdate.AddListener(OnShieldUpdate);
-    health.m_Events.HpReceivedDamage.AddListener(OnHpReceivedDamage);
-    health.m_Events.HpReceivedHeal.AddListener(OnHpReceivedHeal);
-    health.m_Events.HpDamageUpdate.AddListener(OnHpUpdate);
-    health.m_Events.HpHealUpdate.AddListener(OnHpUpdate);
+
+  void OnEnable()
+  {
+    ED.AddListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
+    ED.AddListener(Events.ShieldReceivedHeal, OnShieldReceivedHeal);
+    ED.AddListener(Events.ShieldDamageUpdate, OnShieldUpdate);
+    ED.AddListener(Events.ShieldHealUpdate, OnShieldUpdate);
+    ED.AddListener(Events.HpReceivedDamage, OnHpReceivedDamage);
+    ED.AddListener(Events.HpReceivedHeal, OnHpReceivedHeal);
+    ED.AddListener(Events.HpDamageUpdate, OnHpUpdate);
+    ED.AddListener(Events.HpHealUpdate, OnHpUpdate);
   }
 
 
@@ -34,7 +40,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_CurrentValue = healthED.m_CurrentShield,
       m_EndingValue = healthED.m_CurrentShield - healthED.m_ShieldDelta,
     };
-    m_ShieldDispatcher.Dispatch(GaugeEvents.GaugeChangeStarted, gaugeED);
+    m_ShieldChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
 
 
@@ -47,7 +53,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_CurrentValue = healthED.m_CurrentShield,
       m_EndingValue = healthED.m_CurrentShield + healthED.m_ShieldDelta,
     };
-    m_ShieldDispatcher.Dispatch(GaugeEvents.GaugeChangeStarted, gaugeED);
+    m_ShieldChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
 
 
@@ -58,7 +64,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_MaxValue = healthED.m_ShieldMax,
       m_CurrentValue = healthED.m_CurrentShield,
     };
-    m_ShieldDispatcher.Dispatch(GaugeEvents.GaugeUpdate, gaugeED);
+    m_ShieldChannel.Dispatch(Events.GaugeUpdate, gaugeED);
   }
 
 
@@ -71,7 +77,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_CurrentValue = healthED.m_CurrentHp,
       m_EndingValue = healthED.m_CurrentHp - healthED.m_HpDelta,
     };
-    m_HpDispatcher.Dispatch(GaugeEvents.GaugeChangeStarted, gaugeED);
+    m_HpChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
 
 
@@ -84,7 +90,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_CurrentValue = healthED.m_CurrentHp,
       m_EndingValue = healthED.m_CurrentHp + healthED.m_HpDelta,
     };
-    m_HpDispatcher.Dispatch(GaugeEvents.GaugeChangeStarted, gaugeED);
+    m_HpChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
 
 
@@ -95,6 +101,19 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_MaxValue = healthED.m_HpMax,
       m_CurrentValue = healthED.m_CurrentHp,
     };
-    m_HpDispatcher.Dispatch(GaugeEvents.GaugeUpdate, gaugeED);
+    m_HpChannel.Dispatch(Events.GaugeUpdate, gaugeED);
+  }
+
+
+  void OnDisable()
+  {
+    ED.RemoveListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
+    ED.RemoveListener(Events.ShieldReceivedHeal, OnShieldReceivedHeal);
+    ED.RemoveListener(Events.ShieldDamageUpdate, OnShieldUpdate);
+    ED.RemoveListener(Events.ShieldHealUpdate, OnShieldUpdate);
+    ED.RemoveListener(Events.HpReceivedDamage, OnHpReceivedDamage);
+    ED.RemoveListener(Events.HpReceivedHeal, OnHpReceivedHeal);
+    ED.RemoveListener(Events.HpDamageUpdate, OnHpUpdate);
+    ED.RemoveListener(Events.HpHealUpdate, OnHpUpdate);
   }
 }

@@ -1,23 +1,24 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class ClusterMember : MonoBehaviour
 {
-  [System.Serializable]
-  public class Events
-  {
-    public FireEvent WasFired;
-  }
+  public EventDispatcher ED { get; private set; }
 
   private BulletCluster m_Owner;
-
-  public Events m_Events;
 
 
   void Awake()
   {
-    m_Events.WasFired.AddListener(OnWasFired);
+    ED = GetComponent<EventDispatcher>();
+  }
+
+
+  void OnEnable()
+  {
+    ED.AddListener(Events.WasFired, OnWasFired);
   }
 
 
@@ -31,6 +32,12 @@ public class ClusterMember : MonoBehaviour
   {
     var rb = GetComponent<Rigidbody2D>();
     rb.linearVelocity = fireED.m_Speed * transform.forward;
+  }
+
+
+  void OnDisable()
+  {
+    ED.AddListener(Events.WasFired, OnWasFired);
   }
 
 

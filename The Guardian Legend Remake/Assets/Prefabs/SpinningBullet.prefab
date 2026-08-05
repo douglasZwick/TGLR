@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 1431873882568099067}
   - component: {fileID: 9106534416784920010}
   - component: {fileID: 7629938271426566977}
+  - component: {fileID: 6774540408733596436}
   - component: {fileID: 6393235308069372917}
   - component: {fileID: 6833692198118156702}
   - component: {fileID: 5663112981339624982}
@@ -500,6 +501,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.33333334
+--- !u!114 &6774540408733596436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248505257414153693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
 --- !u!114 &6393235308069372917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,13 +555,6 @@ MonoBehaviour:
   m_ShieldDamageAmount: 8
   m_HpDamageAmount: 8
   m_Type: 0
-  m_Events:
-    CausedShieldDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    CausedHpDamage:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &8937426263332149693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,55 +584,6 @@ MonoBehaviour:
   m_HpMax: 1
   m_ShieldMax: 0
   m_ChangeRate: 100000000
-  m_Events:
-    ShieldReceivedDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedTerminalDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldDamageUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldDepleted:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedTerminalDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    HpDamageUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    Died:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedTotalHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    HpHealUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    HpFilled:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedTotalHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldHealUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldFilled:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &8215020432609846673
 MonoBehaviour:
   m_ObjectHideFlags: 0

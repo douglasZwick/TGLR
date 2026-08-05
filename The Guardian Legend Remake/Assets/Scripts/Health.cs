@@ -1,30 +1,10 @@
-using System;
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 public class Health : MonoBehaviour
 {
-  [System.Serializable]
-  public class Events
-  {
-    public HealthEvent ShieldReceivedDamage;
-    public HealthEvent ShieldReceivedTerminalDamage;
-    public HealthEvent ShieldDamageUpdate;
-    public HealthEvent ShieldDepleted;
-    public HealthEvent HpReceivedDamage;
-    public HealthEvent HpReceivedTerminalDamage;
-    public HealthEvent HpDamageUpdate;
-    public HealthEvent Died;  // AKA HpDepleted
-    public HealthEvent HpReceivedHeal;
-    public HealthEvent HpReceivedTotalHeal;
-    public HealthEvent HpHealUpdate;
-    public HealthEvent HpFilled;
-    public HealthEvent ShieldReceivedHeal;
-    public HealthEvent ShieldReceivedTotalHeal;
-    public HealthEvent ShieldHealUpdate;
-    public HealthEvent ShieldFilled;
-  }
-
+  public EventDispatcher ED { get; private set; }
 
   private float m_Hp;
   [SerializeField]
@@ -50,13 +30,19 @@ public class Health : MonoBehaviour
   private bool Dead => m_Hp <= 0;
   private bool Invincible => m_ShieldChanging || m_HpChanging;
 
-  public Events m_Events;
-
 
   void Awake()
   {
+    ED = GetComponent<EventDispatcher>();
+
     m_Shield = m_ShieldMax;
     m_Hp = m_HpMax;
+  }
+
+
+  void OnEnable()
+  {
+    ED.AddListener(Events.DamageRequest, OnDamageRequest);
   }
 
 
@@ -71,7 +57,7 @@ public class Health : MonoBehaviour
   }
 
 
-  public void RequestDamage(HealthEventData healthED)
+  public void OnDamageRequest(HealthEventData healthED)
   {
     if (Dead) return;
     if (Invincible) return;
@@ -96,7 +82,7 @@ public class Health : MonoBehaviour
   }
 
 
-  public void RequestHeal(HealthEventData healthED)
+  public void OnHealRequest(HealthEventData healthED)
   {
     if (Dead) return;
     if (healthED.m_ShieldDelta <= 0 && healthED.m_HpDelta <= 0) return;
@@ -117,10 +103,10 @@ public class Health : MonoBehaviour
     m_ShieldChanging = true;
     healthED.m_CurrentShield = m_Shield;
     healthED.m_CurrentHp = m_Hp;
-    m_Events.ShieldReceivedDamage.Invoke(healthED);
+    ED.Dispatch(Events.ShieldReceivedDamage, healthED);
 
     if (ShieldWillEmpty)
-      m_Events.ShieldReceivedTerminalDamage.Invoke(healthED);
+      ED.Dispatch(Events.ShieldReceivedTerminalDamage, healthED);
 
     Zbug.Log($"    {GetStatusReport()}");
   }
@@ -135,10 +121,10 @@ public class Health : MonoBehaviour
     m_HpChanging = true;
     healthED.m_CurrentShield = m_Shield;
     healthED.m_CurrentHp = m_Hp;
-    m_Events.HpReceivedDamage.Invoke(healthED);
+    ED.Dispatch(Events.HpReceivedDamage, healthED);
 
     if (WillDie)
-      m_Events.HpReceivedTerminalDamage.Invoke(healthED);
+      ED.Dispatch(Events.HpReceivedTerminalDamage, healthED);
 
     Zbug.Log($"    {GetStatusReport()}");
   }
@@ -154,14 +140,14 @@ public class Health : MonoBehaviour
 
     if (delta < 0)
     {
-      m_Events.ShieldDamageUpdate.Invoke(m_CurrentHealthED);
+      ED.Dispatch(Events.ShieldDamageUpdate, m_CurrentHealthED);
 
       if (ShieldEmpty)
         DepleteShield(m_CurrentHealthED);
     }
     else
     {
-      m_Events.ShieldHealUpdate.Invoke(m_CurrentHealthED);
+      ED.Dispatch(Events.ShieldHealUpdate, m_CurrentHealthED);
 
       if (ShieldFull)
         FillShield(m_CurrentHealthED);
@@ -186,14 +172,14 @@ public class Health : MonoBehaviour
 
     if (delta < 0)
     {
-      m_Events.HpDamageUpdate.Invoke(m_CurrentHealthED);
+      ED.Dispatch(Events.HpDamageUpdate, m_CurrentHealthED);
 
       if (HpFull)
         FillHp(m_CurrentHealthED);
     }
     else
     {
-      m_Events.HpHealUpdate.Invoke(m_CurrentHealthED);
+      ED.Dispatch(Events.HpHealUpdate, m_CurrentHealthED);
 
       if (Dead)
         Die(m_CurrentHealthED);
@@ -212,7 +198,7 @@ public class Health : MonoBehaviour
   {
     Zbug.Log($"{name}'s shield is depleted!");
 
-    m_Events.ShieldDepleted.Invoke(healthED);
+    ED.Dispatch(Events.ShieldDepleted, healthED);
   }
 
 
@@ -220,7 +206,7 @@ public class Health : MonoBehaviour
   {
     Zbug.Log($"{name} has died!");
 
-    m_Events.Died.Invoke(healthED);
+    ED.Dispatch(Events.Died, healthED);
   }
 
 
@@ -231,7 +217,7 @@ public class Health : MonoBehaviour
     var oldShield = m_Shield;
     var newShield = Mathf.Min(m_Shield + healthED.m_ShieldDelta, m_ShieldMax);
     m_Shield = newShield;
-    m_Events.ShieldReceivedHeal.Invoke(healthED);
+    ED.Dispatch(Events.ShieldReceivedHeal, healthED);
 
     Zbug.Log($"    {GetStatusReport()}");
 
@@ -247,7 +233,7 @@ public class Health : MonoBehaviour
     var oldHp = m_Hp;
     var newHp = Mathf.Min(m_Hp + healthED.m_HpDelta, m_HpMax);
     m_Hp = newHp;
-    m_Events.HpReceivedHeal.Invoke(healthED);
+    ED.Dispatch(Events.HpReceivedHeal, healthED);
 
     Zbug.Log($"    {GetStatusReport()}");
 
@@ -260,7 +246,7 @@ public class Health : MonoBehaviour
   {
     Zbug.Log($"{name}'s shield is maxed out!");
 
-    m_Events.ShieldFilled.Invoke(healthED);
+    ED.Dispatch(Events.ShieldFilled, healthED);
   }
 
 
@@ -268,7 +254,7 @@ public class Health : MonoBehaviour
   {
     Zbug.Log($"{name}'s HP is maxed out!");
 
-    m_Events.HpFilled.Invoke(healthED);
+    ED.Dispatch(Events.HpFilled, healthED);
   }
 
 
@@ -280,5 +266,12 @@ public class Health : MonoBehaviour
     var hpString = $"HP: ({m_TargetHp} / {m_HpMax})".B().Color(red);
 
     return $"{name} | {shieldString} | {hpString}";
+  }
+
+
+  void OnDisable()
+  {
+    ED.RemoveListener(Events.DamageRequest, OnDamageRequest);
+    ED.RemoveListener(Events.HealRequest, OnHealRequest);
   }
 }

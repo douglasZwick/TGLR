@@ -5,7 +5,7 @@ using UnityEngine;
 public class BarGauge : MonoBehaviour
 {
   [SerializeField]
-  EventChannel m_Dispatcher;
+  EventChannel m_EventChannel;
   [SerializeField]
   RectTransform m_Bar;
   [SerializeField]
@@ -24,9 +24,9 @@ public class BarGauge : MonoBehaviour
 
   void OnEnable()
   {
-    m_Dispatcher.AddListener(GaugeEvents.GaugeChangeStarted, OnGaugeChangeStarted);
-    m_Dispatcher.AddListener(GaugeEvents.GaugeUpdate, OnGaugeUpdate);
-    m_Dispatcher.AddListener(GaugeEvents.GaugeChangeEnded, OnGaugeChangeEnded);
+    m_EventChannel.AddListener(Events.GaugeChangeStarted, OnGaugeChangeStarted);
+    m_EventChannel.AddListener(Events.GaugeUpdate, OnGaugeUpdate);
+    m_EventChannel.AddListener(Events.GaugeChangeEnded, OnGaugeChangeEnded);
   }
 
 
@@ -61,8 +61,8 @@ public class BarGauge : MonoBehaviour
 
   void OnDisable()
   {
-    m_Dispatcher.RemoveListener(GaugeEvents.GaugeChangeStarted, OnGaugeChangeStarted);
-    m_Dispatcher.RemoveListener(GaugeEvents.GaugeUpdate, OnGaugeUpdate);
-    m_Dispatcher.RemoveListener(GaugeEvents.GaugeChangeEnded, OnGaugeChangeEnded);
+    m_EventChannel.RemoveListener(Events.GaugeChangeStarted, OnGaugeChangeStarted);
+    m_EventChannel.RemoveListener(Events.GaugeUpdate, OnGaugeUpdate);
+    m_EventChannel.RemoveListener(Events.GaugeChangeEnded, OnGaugeChangeEnded);
   }
 }

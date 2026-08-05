@@ -1,13 +1,59 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 
 public abstract class EventKey { }
 public sealed class EventKey<TData> : EventKey { }
 
 
-[System.Serializable]
-public class FireEvent : UnityEvent<FireEventData> { }
+public static class Events
+{
+  // Fire Events
+  public static readonly EventKey<FireEventData> DidFire = new();
+  public static readonly EventKey<FireEventData> WasFired = new();
+
+  // Bounds Events
+  public static readonly EventKey<BoundsEventData> BoundsEnter = new();
+  public static readonly EventKey<BoundsEventData> BoundsIn = new();
+  public static readonly EventKey<BoundsEventData> BoundsExit = new();
+  public static readonly EventKey<BoundsEventData> BoundsOut = new();
+
+  // Movement Events
+  public static readonly EventKey<MovementEventData> MoveRequested = new();
+  public static readonly EventKey<MovementEventData> Moved = new();
+
+  // Health Events
+  public static readonly EventKey<HealthEventData> DamageRequest = new();
+  public static readonly EventKey<HealthEventData> HealRequest = new();
+
+  public static readonly EventKey<HealthEventData> ShieldReceivedDamage = new();
+  public static readonly EventKey<HealthEventData> ShieldReceivedTerminalDamage = new();
+  public static readonly EventKey<HealthEventData> ShieldDamageUpdate = new();
+  public static readonly EventKey<HealthEventData> ShieldDepleted = new();
+
+  public static readonly EventKey<HealthEventData> HpReceivedDamage = new();
+  public static readonly EventKey<HealthEventData> HpReceivedTerminalDamage = new();
+  public static readonly EventKey<HealthEventData> HpDamageUpdate = new();
+  public static readonly EventKey<HealthEventData> Died = new();
+
+  public static readonly EventKey<HealthEventData> HpReceivedHeal = new();
+  public static readonly EventKey<HealthEventData> HpReceivedTotalHeal = new();
+  public static readonly EventKey<HealthEventData> HpHealUpdate = new();
+  public static readonly EventKey<HealthEventData> HpFilled = new();
+  
+  public static readonly EventKey<HealthEventData> ShieldReceivedHeal = new();
+  public static readonly EventKey<HealthEventData> ShieldReceivedTotalHeal = new();
+  public static readonly EventKey<HealthEventData> ShieldHealUpdate = new();
+  public static readonly EventKey<HealthEventData> ShieldFilled = new();
+
+  // Shake Events
+  public static readonly EventKey<ShakeEventData> ShakeRequest = new();
+
+  // Gauge Events
+  public static readonly EventKey<GaugeEventData> GaugeChangeStarted = new();
+  public static readonly EventKey<GaugeEventData> GaugeUpdate = new();
+  public static readonly EventKey<GaugeEventData> GaugeChangeEnded = new();
+}
+
 
 public class FireEventData
 {
@@ -15,18 +61,12 @@ public class FireEventData
 }
 
 
-[System.Serializable]
-public class BoundsEvent : UnityEvent<BoundsEventData> { }
-
 public class BoundsEventData
 {
   public Vector2 m_WorldPosition;
   public Vector2 m_Resolution;
 }
 
-
-[System.Serializable]
-public class MovementEvent : UnityEvent<MovementEventData> { }
 
 public class MovementEventData
 {
@@ -37,9 +77,6 @@ public class MovementEventData
 }
 
 
-[System.Serializable]
-public class ScrollEvent : UnityEvent<ScrollEventData> { }
-
 public class ScrollEventData
 {
   public float m_Speed;
@@ -48,11 +85,9 @@ public class ScrollEventData
 }
 
 
-[System.Serializable]
-public class HealthEvent : UnityEvent<HealthEventData> { }
-
 public class HealthEventData
 {
+  public DamageSource m_Source;
   public float m_ShieldDelta;
   public float m_CurrentShield;
   public float m_ShieldMax;
@@ -68,11 +103,6 @@ public class ShakeEventData
   public float m_Trauma;
 }
 
-public static class ShakeEvents
-{
-  public static readonly EventKey<ShakeEventData> ShakeRequest = new();
-}
-
 
 public class GaugeEventData
 {
@@ -80,11 +110,4 @@ public class GaugeEventData
   public float m_StartingValue;
   public float m_CurrentValue;
   public float m_EndingValue;
-}
-
-public static class GaugeEvents
-{
-  public static readonly EventKey<GaugeEventData> GaugeChangeStarted = new();
-  public static readonly EventKey<GaugeEventData> GaugeUpdate = new();
-  public static readonly EventKey<GaugeEventData> GaugeChangeEnded = new();
 }

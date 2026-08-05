@@ -1,9 +1,11 @@
 using UnityEngine;
 
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(EventDispatcher))]
 public class HealthSounds : MonoBehaviour
 {
+  public EventDispatcher ED { get; private set; }
+  
   [SerializeField]
   private AudioItem m_ShieldDamageSound;
   [SerializeField]
@@ -14,21 +16,26 @@ public class HealthSounds : MonoBehaviour
 
   void Awake()
   {
-    var health = GetComponent<Health>();
-    health.m_Events.ShieldReceivedDamage.AddListener(OnReceivedShieldDamage);
-    health.m_Events.HpReceivedDamage.AddListener(OnReceivedHpDamage);
-    health.m_Events.Died.AddListener(OnDied);
+    ED = GetComponent<EventDispatcher>();
   }
 
 
-  public void OnReceivedShieldDamage(HealthEventData healthED)
+  void OnEnable()
+  {
+    ED.AddListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
+    ED.AddListener(Events.HpReceivedDamage, OnHpReceivedDamage);
+    ED.AddListener(Events.Died, OnDied);
+  }
+
+
+  public void OnShieldReceivedDamage(HealthEventData healthED)
   {
     if (m_ShieldDamageSound == null) return;
     AudioManager.Instance.Play(m_ShieldDamageSound);
   }
 
 
-  public void OnReceivedHpDamage(HealthEventData healthED)
+  public void OnHpReceivedDamage(HealthEventData healthED)
   {
     if (m_HpDamageSound == null) return;
     AudioManager.Instance.Play(m_HpDamageSound);
@@ -39,5 +46,13 @@ public class HealthSounds : MonoBehaviour
   {
     if (m_DeathSound == null) return;
     AudioManager.Instance.Play(m_DeathSound);
+  }
+
+
+  void OnDisable()
+  {
+    ED.RemoveListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
+    ED.RemoveListener(Events.HpReceivedDamage, OnHpReceivedDamage);
+    ED.RemoveListener(Events.Died, OnDied);
   }
 }

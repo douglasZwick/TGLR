@@ -10,8 +10,10 @@ public class KinematicMover : Mover
   private Rigidbody2D m_RB;
 
 
-  void Awake()
+  override protected void Awake()
   {
+    base.Awake();
+    
     m_RB = GetComponent<Rigidbody2D>();
   }
 
@@ -37,10 +39,10 @@ public class KinematicMover : Mover
       m_Direction = m_MoveInput.normalized,
     };
 
-    m_Events.m_MoveRequested.Invoke(movementED);
+    ED.Dispatch(Events.MoveRequested, movementED);
 
     m_RB.MovePosition(movementED.m_FinalPosition);
 
-    m_Events.m_Moved.Invoke(movementED);
+    ED.Dispatch(Events.Moved, movementED);
   }
 }

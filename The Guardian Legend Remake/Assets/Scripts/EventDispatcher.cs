@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "EventChannel", menuName = "Scriptable Objects/EventChannel")]
-public class EventChannel : ScriptableObject
+public class EventDispatcher : MonoBehaviour
 {
   private readonly EventDispatcherCore m_Dispatcher = new();
 
@@ -18,10 +17,4 @@ public class EventChannel : ScriptableObject
 
   public void Dispatch<TData>(EventKey<TData> key, TData eventData)
     => m_Dispatcher.Dispatch(key, eventData);
-
-
-  void OnDisable()
-  {
-    m_Dispatcher.Clear();
-  }
 }

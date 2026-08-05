@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 1835042705609216453}
   - component: {fileID: 8560488766137770577}
   - component: {fileID: 5955866040487189390}
+  - component: {fileID: 3306195707551050932}
   - component: {fileID: 6733432023503375058}
   - component: {fileID: 3362146076280226106}
   - component: {fileID: 5587741762263774267}
@@ -454,6 +455,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3306195707551050932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
 --- !u!114 &6733432023503375058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,25 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3e8080d3c3f3e43b2a0a1c2983d8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KinematicMover
-  m_Events:
-    m_MoveRequested:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5587741762263774267}
-          m_TargetAssemblyTypeName: SimpleFacer, Assembly-CSharp
-          m_MethodName: OnMoveRequested
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    m_Moved:
-      m_PersistentCalls:
-        m_Calls: []
   m_MovementSpeed: 12
 --- !u!114 &5587741762263774267
 MonoBehaviour:
@@ -529,55 +523,6 @@ MonoBehaviour:
   m_HpMax: 24
   m_ShieldMax: 64
   m_ChangeRate: 32
-  m_Events:
-    ShieldReceivedDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedTerminalDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldDamageUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldDepleted:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedTerminalDamage:
-      m_PersistentCalls:
-        m_Calls: []
-    HpDamageUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    Died:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    HpReceivedTotalHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    HpHealUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    HpFilled:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldReceivedTotalHeal:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldHealUpdate:
-      m_PersistentCalls:
-        m_Calls: []
-    ShieldFilled:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &7141368927070011835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,10 +541,6 @@ MonoBehaviour:
   m_MaxClusters: 4
   m_ShootSound: {fileID: 11400000, guid: 7ac6e6b0c144b6c42a7d2e9d963e245d, type: 2}
   m_GunBaseNode: {fileID: 7424168318377528221}
-  m_Events:
-    DidFire:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &1977028258292569750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b386618b5cbfacc428ecadb853da494f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShakeOnDamage
-  m_Dispatcher: {fileID: 11400000, guid: de4b456f4ac9d8a4e8ea01dc4a17d958, type: 2}
+  m_EventChannel: {fileID: 11400000, guid: de4b456f4ac9d8a4e8ea01dc4a17d958, type: 2}
   m_ShieldDamageTrauma: 0.5
   m_HpDamageTrauma: 1
 --- !u!114 &5269713053985398160
@@ -662,8 +603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56740326f0f3c24bbdd494fc3798449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthGaugeUpdater
-  m_ShieldDispatcher: {fileID: 11400000, guid: 0950cc8b5c19e42449f9e748e09c1250, type: 2}
-  m_HpDispatcher: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
+  m_ShieldChannel: {fileID: 11400000, guid: 0950cc8b5c19e42449f9e748e09c1250, type: 2}
+  m_HpChannel: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
 --- !u!1 &3405645095827148436
 GameObject:
   m_ObjectHideFlags: 0

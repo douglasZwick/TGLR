@@ -1,15 +1,10 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 public class DamageSource : MonoBehaviour
 {
-  [System.Serializable]
-  public class Events
-  {
-    public HealthEvent CausedShieldDamage;
-    public HealthEvent CausedHpDamage;
-  }
-
+  public EventDispatcher ED { get; private set; }
 
   [SerializeField]
   private float m_ShieldDamageAmount;
@@ -18,13 +13,17 @@ public class DamageSource : MonoBehaviour
   [SerializeField]
   private DamageType m_Type;
 
-  public Events m_Events;
+
+  void Awake()
+  {
+    ED = GetComponent<EventDispatcher>();
+  }
 
 
   public void RequestDamage(Health receiver)
   {
     var healthED = CreateHealthEventData();
-    receiver.RequestDamage(healthED);
+    receiver.OnDamageRequest(healthED);
   }
 
 
@@ -32,6 +31,7 @@ public class DamageSource : MonoBehaviour
   {
     var healthED = new HealthEventData()
     {
+      m_Source = this,
       m_ShieldDelta = m_ShieldDamageAmount,
       m_HpDelta = m_HpDamageAmount,
       m_Type = m_Type,

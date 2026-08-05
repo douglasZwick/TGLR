@@ -5,14 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 [RequireComponent(typeof(PlayerInput))]
 public class BasicGun : MonoBehaviour
 {
-  [System.Serializable]
-  public class Events
-  {
-    public FireEvent DidFire;
-  }
+  public EventDispatcher ED { get; private set; }
 
   private readonly static string s_FiringGroupTag = "FiringGroup";
   private readonly static string s_FiringPointTag = "FiringPoint";
@@ -35,11 +32,11 @@ public class BasicGun : MonoBehaviour
   private bool ClusterAvailable => m_CurrentClusters.Count < m_MaxClusters;
   private bool CoolingDown => m_CooldownTimer < m_CooldownDuration;
 
-  public Events m_Events;
-
 
   void Awake()
   {
+    ED = GetComponent<EventDispatcher>();
+
     var playerInput = GetComponent<PlayerInput>();
     m_PrimaryFireAction = playerInput.actions.FindAction("PrimaryFire");
 
@@ -93,8 +90,7 @@ public class BasicGun : MonoBehaviour
   void Fire()
   {
     var fireED = new FireEventData();
-
-    m_Events.DidFire.Invoke(fireED);
+    ED.Dispatch(Events.DidFire, fireED);
 
     var firingPoints = m_FiringPattern[m_PatternIndex];
     var cluster = new BulletCluster(DestroyCluster);

@@ -1,21 +1,21 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 abstract public class Mover : MonoBehaviour
 {
-  [System.Serializable]
-  public class Events
-  {
-    public MovementEvent m_MoveRequested;
-    public MovementEvent m_Moved;
-  }
+  public EventDispatcher ED { get; private set; }
   
   // TODO:
   //   Consider changing this to an accumulator that I clear on LateUpdate. That might be more
   //   responsive in certain cases.
   protected Vector2 m_MoveInput;
 
-  public Events m_Events;
+
+  protected virtual void Awake()
+  {
+    ED = GetComponent<EventDispatcher>();
+  }
 
 
   void FixedUpdate()
