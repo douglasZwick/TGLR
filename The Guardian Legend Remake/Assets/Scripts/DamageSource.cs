@@ -9,7 +9,9 @@ public class DamageSource : MonoBehaviour
   [SerializeField]
   private float m_ShieldDamageAmount;
   [SerializeField]
-  private float m_HpDamageAmount;
+  private float m_HealthDamageAmount;
+  [SerializeField]
+  private float m_Penetration;
   [SerializeField]
   private DamageType m_Type;
 
@@ -20,10 +22,11 @@ public class DamageSource : MonoBehaviour
   }
 
 
-  public void RequestDamage(Health receiver)
+  public void TryRequestDamage(GameObject target)
   {
+    if (!target.TryGetComponent<EventDispatcher>(out var ed)) return;
     var healthED = CreateHealthEventData();
-    receiver.OnDamageRequest(healthED);
+    ed.Dispatch(Events.DamageRequest, healthED);
   }
 
 
@@ -32,8 +35,9 @@ public class DamageSource : MonoBehaviour
     var healthED = new HealthEventData()
     {
       m_Source = this,
-      m_ShieldDelta = m_ShieldDamageAmount,
-      m_HpDelta = m_HpDamageAmount,
+      m_IncomingShieldDamage = m_ShieldDamageAmount,
+      m_IncomingHealthDamage = m_HealthDamageAmount,
+      m_Penetration = m_Penetration,
       m_Type = m_Type,
     };
 

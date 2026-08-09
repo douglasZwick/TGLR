@@ -23,7 +23,7 @@ public class CameraShakeOnDamage : MonoBehaviour
   void OnEnable()
   {
     ED.AddListener(Events.ShieldReceivedDamage, OnReceivedShieldDamage);
-    ED.AddListener(Events.HpReceivedDamage, OnReceivedHpDamage);
+    ED.AddListener(Events.HealthReceivedDamage, OnReceivedHpDamage);
   }
 
 
@@ -53,6 +53,6 @@ public class CameraShakeOnDamage : MonoBehaviour
   void OnDisable()
   {
     ED.RemoveListener(Events.ShieldReceivedDamage, OnReceivedShieldDamage);
-    ED.RemoveListener(Events.HpReceivedDamage, OnReceivedHpDamage);
+    ED.RemoveListener(Events.HealthReceivedDamage, OnReceivedHpDamage);
   }
 }

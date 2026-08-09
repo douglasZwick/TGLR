@@ -24,31 +24,34 @@ public static class Events
   // Health Events
   public static readonly EventKey<HealthEventData> DamageRequest = new();
   public static readonly EventKey<HealthEventData> HealRequest = new();
+  public static readonly EventKey<HealthEventData> DamagePreProcess = new();
 
   public static readonly EventKey<HealthEventData> ShieldReceivedDamage = new();
-  public static readonly EventKey<HealthEventData> ShieldReceivedTerminalDamage = new();
-  public static readonly EventKey<HealthEventData> ShieldDamageUpdate = new();
+  public static readonly EventKey<HealthEventData> ShieldDamageStarted = new();
+  public static readonly EventKey<HealthEventData> ShieldUpdate = new();
   public static readonly EventKey<HealthEventData> ShieldDepleted = new();
-
-  public static readonly EventKey<HealthEventData> HpReceivedDamage = new();
-  public static readonly EventKey<HealthEventData> HpReceivedTerminalDamage = new();
-  public static readonly EventKey<HealthEventData> HpDamageUpdate = new();
-  public static readonly EventKey<HealthEventData> Died = new();
-
-  public static readonly EventKey<HealthEventData> HpReceivedHeal = new();
-  public static readonly EventKey<HealthEventData> HpReceivedTotalHeal = new();
-  public static readonly EventKey<HealthEventData> HpHealUpdate = new();
-  public static readonly EventKey<HealthEventData> HpFilled = new();
   
   public static readonly EventKey<HealthEventData> ShieldReceivedHeal = new();
-  public static readonly EventKey<HealthEventData> ShieldReceivedTotalHeal = new();
-  public static readonly EventKey<HealthEventData> ShieldHealUpdate = new();
+  public static readonly EventKey<HealthEventData> ShieldHealStarted = new();
   public static readonly EventKey<HealthEventData> ShieldFilled = new();
+
+  public static readonly EventKey<HealthEventData> HealthReceivedDamage = new();
+  public static readonly EventKey<HealthEventData> Died = new();
+
+  public static readonly EventKey<HealthEventData> HealthReceivedHeal = new();
+  public static readonly EventKey<HealthEventData> HealthFilled = new();
+
+  public static readonly EventKey<HealthEventData> CausedShieldDamage = new();
+  public static readonly EventKey<HealthEventData> CausedHealthDamage = new();
+  public static readonly EventKey<HealthEventData> Killed = new();
+  // CONSIDER:
+  //   Add an event for depleting target's shields, if it becomes reasonable to do so
 
   // Shake Events
   public static readonly EventKey<ShakeEventData> ShakeRequest = new();
 
   // Gauge Events
+  public static readonly EventKey<GaugeEventData> GaugeValueChanged = new();
   public static readonly EventKey<GaugeEventData> GaugeChangeStarted = new();
   public static readonly EventKey<GaugeEventData> GaugeUpdate = new();
   public static readonly EventKey<GaugeEventData> GaugeChangeEnded = new();
@@ -88,13 +91,21 @@ public class ScrollEventData
 public class HealthEventData
 {
   public DamageSource m_Source;
-  public float m_ShieldDelta;
-  public float m_CurrentShield;
-  public float m_ShieldMax;
-  public float m_HpDelta;
+  public float m_IncomingShieldDamage;
+  public float m_IncomingHealthDamage;
+  public float m_IncomingShieldHeal;
+  public float m_IncomingHealthHeal;
+  public float m_StartingEnergy;
+  public float m_StartingHp;
+  public float m_CurrentEnergy;
   public float m_CurrentHp;
+  public float m_Penetration;
   public float m_HpMax;
+  public float m_EnergyMax;
   public DamageType m_Type;
+
+  public void SourceDispatch<TData>(EventKey<TData> key, TData eventData)
+    => m_Source.ED.Dispatch(key, eventData);
 }
 
 

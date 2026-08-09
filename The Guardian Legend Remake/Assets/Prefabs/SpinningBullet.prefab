@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 6833692198118156702}
   - component: {fileID: 5663112981339624982}
   - component: {fileID: 8937426263332149693}
-  - component: {fileID: 1185308406727925443}
+  - component: {fileID: 8370882309327209643}
   - component: {fileID: 8215020432609846673}
   - component: {fileID: 8596581536476232735}
   m_Layer: 11
@@ -553,7 +553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
   m_ShieldDamageAmount: 8
-  m_HpDamageAmount: 8
+  m_HealthDamageAmount: 8
+  m_Penetration: 0
   m_Type: 0
 --- !u!114 &8937426263332149693
 MonoBehaviour:
@@ -569,7 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollide
   m_DamageOnCollisionEnter2D: 1
   m_DamageOnTriggerEnter2D: 1
---- !u!114 &1185308406727925443
+--- !u!114 &8370882309327209643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -578,12 +579,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7248505257414153693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bb85c8a788dc4419cbf362ae142834, type: 3}
+  m_Script: {fileID: 11500000, guid: e33f9aa1faaac1d47b8a581cdfd738d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
+  m_EditorClassIdentifier: Assembly-CSharp::BasicHealth
   m_HpMax: 1
-  m_ShieldMax: 0
-  m_ChangeRate: 100000000
 --- !u!114 &8215020432609846673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,7 +610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f2d95c3e1806c4b8f0133348d4be49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDied
-  m_EventSource: {fileID: 0}
   m_DestructionTarget: {fileID: 0}
 --- !u!1 &8035883753736308642
 GameObject:

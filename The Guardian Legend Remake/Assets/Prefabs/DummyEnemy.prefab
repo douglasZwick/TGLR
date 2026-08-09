@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 6889121370708424637}
   - component: {fileID: 6814309442662833697}
   - component: {fileID: 1664519718124411135}
-  - component: {fileID: 1354441643707676361}
+  - component: {fileID: 4378421361620784150}
   - component: {fileID: 7461648657070183012}
   - component: {fileID: 858847711841001426}
   - component: {fileID: 1286667614452665883}
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
---- !u!114 &1354441643707676361
+--- !u!114 &4378421361620784150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,12 +370,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1308268633276255667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bb85c8a788dc4419cbf362ae142834, type: 3}
+  m_Script: {fileID: 11500000, guid: e33f9aa1faaac1d47b8a581cdfd738d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  m_HpMax: 24
-  m_ShieldMax: 16
-  m_ChangeRate: 4
+  m_EditorClassIdentifier: Assembly-CSharp::BasicHealth
+  m_HpMax: 40
 --- !u!114 &7461648657070183012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f2d95c3e1806c4b8f0133348d4be49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDied
-  m_EventSource: {fileID: 0}
   m_DestructionTarget: {fileID: 0}
 --- !u!114 &858847711841001426
 MonoBehaviour:

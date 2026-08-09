@@ -332,8 +332,9 @@ GameObject:
   - component: {fileID: 6733432023503375058}
   - component: {fileID: 3362146076280226106}
   - component: {fileID: 5587741762263774267}
-  - component: {fileID: 4060013385341105933}
   - component: {fileID: 7141368927070011835}
+  - component: {fileID: 1687224801663253635}
+  - component: {fileID: 3997748025779733304}
   - component: {fileID: 1977028258292569750}
   - component: {fileID: 1308729620139288345}
   - component: {fileID: 9045260652637716572}
@@ -508,21 +509,6 @@ MonoBehaviour:
   m_RotationNodes:
   - {fileID: 7018158965388336730}
   - {fileID: 7424168318377528221}
---- !u!114 &4060013385341105933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2790449705323218029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bb85c8a788dc4419cbf362ae142834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  m_HpMax: 24
-  m_ShieldMax: 64
-  m_ChangeRate: 32
 --- !u!114 &7141368927070011835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +527,33 @@ MonoBehaviour:
   m_MaxClusters: 4
   m_ShootSound: {fileID: 11400000, guid: 7ac6e6b0c144b6c42a7d2e9d963e245d, type: 2}
   m_GunBaseNode: {fileID: 7424168318377528221}
+--- !u!114 &1687224801663253635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33f9aa1faaac1d47b8a581cdfd738d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicHealth
+  m_HpMax: 24
+--- !u!114 &3997748025779733304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8043b4dc607d284982e39ac13025cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RollingShield
+  m_EnergyMax: 64
+  m_ChangeRate: 32
 --- !u!114 &1977028258292569750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthGaugeUpdater
   m_ShieldChannel: {fileID: 11400000, guid: 0950cc8b5c19e42449f9e748e09c1250, type: 2}
-  m_HpChannel: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
+  m_HealthChannel: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
 --- !u!1 &3405645095827148436
 GameObject:
   m_ObjectHideFlags: 0

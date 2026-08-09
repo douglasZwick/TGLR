@@ -34,7 +34,6 @@ public class DamageOnCollide : MonoBehaviour
 
   void AttemptDamage(GameObject other)
   {
-    if (other.TryGetComponent<Health>(out var receiver))
-      m_DamageSource.RequestDamage(receiver);
+    m_DamageSource.TryRequestDamage(other);
   }
 }

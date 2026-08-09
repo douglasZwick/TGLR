@@ -23,7 +23,7 @@ public class HealthSounds : MonoBehaviour
   void OnEnable()
   {
     ED.AddListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
-    ED.AddListener(Events.HpReceivedDamage, OnHpReceivedDamage);
+    ED.AddListener(Events.HealthReceivedDamage, OnHpReceivedDamage);
     ED.AddListener(Events.Died, OnDied);
   }
 
@@ -52,7 +52,7 @@ public class HealthSounds : MonoBehaviour
   void OnDisable()
   {
     ED.RemoveListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
-    ED.RemoveListener(Events.HpReceivedDamage, OnHpReceivedDamage);
+    ED.RemoveListener(Events.HealthReceivedDamage, OnHpReceivedDamage);
     ED.RemoveListener(Events.Died, OnDied);
   }
 }

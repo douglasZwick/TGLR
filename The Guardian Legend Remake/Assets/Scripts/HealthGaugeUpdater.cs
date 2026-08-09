@@ -9,7 +9,7 @@ public class HealthGaugeUpdater : MonoBehaviour
   [SerializeField]
   EventChannel m_ShieldChannel;
   [SerializeField]
-  EventChannel m_HpChannel;
+  EventChannel m_HealthChannel;
 
 
   void Awake()
@@ -20,38 +20,35 @@ public class HealthGaugeUpdater : MonoBehaviour
 
   void OnEnable()
   {
-    ED.AddListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
-    ED.AddListener(Events.ShieldReceivedHeal, OnShieldReceivedHeal);
-    ED.AddListener(Events.ShieldDamageUpdate, OnShieldUpdate);
-    ED.AddListener(Events.ShieldHealUpdate, OnShieldUpdate);
-    ED.AddListener(Events.HpReceivedDamage, OnHpReceivedDamage);
-    ED.AddListener(Events.HpReceivedHeal, OnHpReceivedHeal);
-    ED.AddListener(Events.HpDamageUpdate, OnHpUpdate);
-    ED.AddListener(Events.HpHealUpdate, OnHpUpdate);
+    ED.AddListener(Events.ShieldDamageStarted, OnShieldDamageStarted);
+    ED.AddListener(Events.ShieldHealStarted, OnShieldHealStarted);
+    ED.AddListener(Events.ShieldUpdate, OnShieldUpdate);
+    ED.AddListener(Events.HealthReceivedDamage, OnHealthReceivedDamage);
+    ED.AddListener(Events.HealthReceivedHeal, OnHealthReceivedHeal);
   }
 
 
-  void OnShieldReceivedDamage(HealthEventData healthED)
+  void OnShieldDamageStarted(HealthEventData healthED)
   {
     var gaugeED = new GaugeEventData()
     {
-      m_MaxValue = healthED.m_ShieldMax,
-      m_StartingValue = healthED.m_CurrentShield,
-      m_CurrentValue = healthED.m_CurrentShield,
-      m_EndingValue = healthED.m_CurrentShield - healthED.m_ShieldDelta,
+      m_MaxValue = healthED.m_EnergyMax,
+      m_StartingValue = healthED.m_StartingEnergy,
+      m_CurrentValue = healthED.m_CurrentEnergy,
+      m_EndingValue = healthED.m_StartingEnergy - healthED.m_IncomingShieldDamage,
     };
     m_ShieldChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
 
 
-  void OnShieldReceivedHeal(HealthEventData healthED)
+  void OnShieldHealStarted(HealthEventData healthED)
   {
     var gaugeED = new GaugeEventData()
     {
-      m_MaxValue = healthED.m_ShieldMax,
-      m_StartingValue = healthED.m_CurrentShield,
-      m_CurrentValue = healthED.m_CurrentShield,
-      m_EndingValue = healthED.m_CurrentShield + healthED.m_ShieldDelta,
+      m_MaxValue = healthED.m_EnergyMax,
+      m_StartingValue = healthED.m_StartingEnergy,
+      m_CurrentValue = healthED.m_CurrentEnergy,
+      m_EndingValue = healthED.m_StartingEnergy + healthED.m_IncomingShieldDamage,
     };
     m_ShieldChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
@@ -61,59 +58,45 @@ public class HealthGaugeUpdater : MonoBehaviour
   {
     var gaugeED = new GaugeEventData()
     {
-      m_MaxValue = healthED.m_ShieldMax,
-      m_CurrentValue = healthED.m_CurrentShield,
+      m_MaxValue = healthED.m_EnergyMax,
+      m_CurrentValue = healthED.m_CurrentEnergy,
     };
     m_ShieldChannel.Dispatch(Events.GaugeUpdate, gaugeED);
   }
 
 
-  void OnHpReceivedDamage(HealthEventData healthED)
+  void OnHealthReceivedDamage(HealthEventData healthED)
   {
     var gaugeED = new GaugeEventData()
     {
       m_MaxValue = healthED.m_HpMax,
       m_StartingValue = healthED.m_CurrentHp,
       m_CurrentValue = healthED.m_CurrentHp,
-      m_EndingValue = healthED.m_CurrentHp - healthED.m_HpDelta,
+      m_EndingValue = healthED.m_CurrentHp - healthED.m_IncomingHealthDamage,
     };
-    m_HpChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
+    m_HealthChannel.Dispatch(Events.GaugeValueChanged, gaugeED);
   }
 
 
-  void OnHpReceivedHeal(HealthEventData healthED)
+  void OnHealthReceivedHeal(HealthEventData healthED)
   {
     var gaugeED = new GaugeEventData()
     {
       m_MaxValue = healthED.m_HpMax,
       m_StartingValue = healthED.m_CurrentHp,
       m_CurrentValue = healthED.m_CurrentHp,
-      m_EndingValue = healthED.m_CurrentHp + healthED.m_HpDelta,
+      m_EndingValue = healthED.m_CurrentHp + healthED.m_IncomingHealthHeal,
     };
-    m_HpChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
-  }
-
-
-  void OnHpUpdate(HealthEventData healthED)
-  {
-    var gaugeED = new GaugeEventData()
-    {
-      m_MaxValue = healthED.m_HpMax,
-      m_CurrentValue = healthED.m_CurrentHp,
-    };
-    m_HpChannel.Dispatch(Events.GaugeUpdate, gaugeED);
+    m_HealthChannel.Dispatch(Events.GaugeUpdate, gaugeED);
   }
 
 
   void OnDisable()
   {
-    ED.RemoveListener(Events.ShieldReceivedDamage, OnShieldReceivedDamage);
-    ED.RemoveListener(Events.ShieldReceivedHeal, OnShieldReceivedHeal);
-    ED.RemoveListener(Events.ShieldDamageUpdate, OnShieldUpdate);
-    ED.RemoveListener(Events.ShieldHealUpdate, OnShieldUpdate);
-    ED.RemoveListener(Events.HpReceivedDamage, OnHpReceivedDamage);
-    ED.RemoveListener(Events.HpReceivedHeal, OnHpReceivedHeal);
-    ED.RemoveListener(Events.HpDamageUpdate, OnHpUpdate);
-    ED.RemoveListener(Events.HpHealUpdate, OnHpUpdate);
+    ED.RemoveListener(Events.ShieldDamageStarted, OnShieldDamageStarted);
+    ED.RemoveListener(Events.ShieldHealStarted, OnShieldHealStarted);
+    ED.RemoveListener(Events.ShieldUpdate, OnShieldUpdate);
+    ED.RemoveListener(Events.HealthReceivedDamage, OnHealthReceivedDamage);
+    ED.RemoveListener(Events.HealthReceivedHeal, OnHealthReceivedHeal);
   }
 }

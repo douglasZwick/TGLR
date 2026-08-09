@@ -7,7 +7,7 @@ public class #SCRIPTNAME# : MonoBehaviour
   public EventDispatcher ED { get; private set; }
 
 
-  void Awake()
+  protected virtual void Awake()
   {
     ED = GetComponent<EventDispatcher>();
   }

@@ -321,7 +321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
   m_ShieldDamageAmount: 8
-  m_HpDamageAmount: 8
+  m_HealthDamageAmount: 8
+  m_Penetration: 0
   m_Type: 0
 --- !u!114 &3888083200042266948
 MonoBehaviour:
