@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 8560488766137770577}
   - component: {fileID: 5955866040487189390}
   - component: {fileID: 3306195707551050932}
+  - component: {fileID: 4870449493587650165}
   - component: {fileID: 6733432023503375058}
   - component: {fileID: 3362146076280226106}
   - component: {fileID: 5587741762263774267}
@@ -468,6 +469,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
+--- !u!114 &4870449493587650165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f40ac67c23a8649a98a9761e1a9105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats
+  m_Attack: 16
+  m_Defense: 16
+  m_MovementSpeed: 12
+  m_AttackRate: 4
 --- !u!114 &6733432023503375058
 MonoBehaviour:
   m_ObjectHideFlags: 0
