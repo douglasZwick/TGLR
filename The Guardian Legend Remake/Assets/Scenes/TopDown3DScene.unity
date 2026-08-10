@@ -2060,7 +2060,10 @@ MonoBehaviour:
   m_EventChannel: {fileID: 11400000, guid: 0950cc8b5c19e42449f9e748e09c1250, type: 2}
   m_Bar: {fileID: 1275432876}
   m_DeltaBar: {fileID: 1092290937}
-  m_AnimationDuration: 0.1
+  m_Frame: {fileID: 0}
+  m_Label: {fileID: 0}
+  m_BarColorAnimationDuration: 0.1
+  m_FrameUnitPrefab: {fileID: 0}
 --- !u!224 &843243244 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2350114662894035404, guid: 3c04e5b52b943e4488a6c81fcefe37ae, type: 3}
@@ -2316,7 +2319,10 @@ MonoBehaviour:
   m_EventChannel: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
   m_Bar: {fileID: 767324642}
   m_DeltaBar: {fileID: 274461403}
-  m_AnimationDuration: 0.1
+  m_Frame: {fileID: 0}
+  m_Label: {fileID: 0}
+  m_BarColorAnimationDuration: 0.1
+  m_FrameUnitPrefab: {fileID: 0}
 --- !u!1 &983758349
 GameObject:
   m_ObjectHideFlags: 0
@@ -4726,9 +4732,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.17827298
+    y: 0.16431323
     width: 1
-    height: 0.82172704
+    height: 0.8356868
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 10
@@ -4830,7 +4836,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 2
+  antialiasing: 0
   SMAAQuality: 2
   dithering: 1
   stopNaNs: 0

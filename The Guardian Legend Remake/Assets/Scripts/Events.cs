@@ -55,6 +55,7 @@ public static class Events
   public static readonly EventKey<GaugeEventData> GaugeChangeStarted = new();
   public static readonly EventKey<GaugeEventData> GaugeUpdate = new();
   public static readonly EventKey<GaugeEventData> GaugeChangeEnded = new();
+  public static readonly EventKey<GaugeEventData> GaugeSetup = new();
 }
 
 
@@ -121,4 +122,5 @@ public class GaugeEventData
   public float m_StartingValue;
   public float m_CurrentValue;
   public float m_EndingValue;
+  public float m_AnimationDuration;
 }
