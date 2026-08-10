@@ -1570,17 +1570,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1687224801663253635, guid: ff61ec21c774cc1419e7deeaee07aeb8, type: 3}
-      propertyPath: m_HpMax
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 2790449705323218029, guid: ff61ec21c774cc1419e7deeaee07aeb8, type: 3}
       propertyPath: m_Name
       value: TopDownHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 3997748025779733304, guid: ff61ec21c774cc1419e7deeaee07aeb8, type: 3}
-      propertyPath: m_ChangeRate
-      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2060,10 +2052,10 @@ MonoBehaviour:
   m_EventChannel: {fileID: 11400000, guid: 0950cc8b5c19e42449f9e748e09c1250, type: 2}
   m_Bar: {fileID: 1275432876}
   m_DeltaBar: {fileID: 1092290937}
-  m_Frame: {fileID: 0}
-  m_Label: {fileID: 0}
+  m_Frame: {fileID: 983758350}
+  m_Label: {fileID: 1682543221}
   m_BarColorAnimationDuration: 0.1
-  m_FrameUnitPrefab: {fileID: 0}
+  m_FrameUnitPrefab: {fileID: 2350114662894035404, guid: 3c04e5b52b943e4488a6c81fcefe37ae, type: 3}
 --- !u!224 &843243244 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2350114662894035404, guid: 3c04e5b52b943e4488a6c81fcefe37ae, type: 3}
@@ -2319,10 +2311,10 @@ MonoBehaviour:
   m_EventChannel: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
   m_Bar: {fileID: 767324642}
   m_DeltaBar: {fileID: 274461403}
-  m_Frame: {fileID: 0}
-  m_Label: {fileID: 0}
+  m_Frame: {fileID: 1166847060}
+  m_Label: {fileID: 1693829688}
   m_BarColorAnimationDuration: 0.1
-  m_FrameUnitPrefab: {fileID: 0}
+  m_FrameUnitPrefab: {fileID: 4968813227966070256, guid: c074e9fe7d93414439d5bb9fbfe47426, type: 3}
 --- !u!1 &983758349
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,13 +4828,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 1
   SMAAQuality: 2
   dithering: 1
   stopNaNs: 0
   taaSharpenStrength: 0.5
-  TAAQuality: 1
-  taaSharpenMode: 0
+  TAAQuality: 2
+  taaSharpenMode: 1
   taaRingingReduction: 0
   taaHistorySharpening: 0.35
   taaAntiFlicker: 0.5

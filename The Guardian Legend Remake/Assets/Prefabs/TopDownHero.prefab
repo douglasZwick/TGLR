@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33f9aa1faaac1d47b8a581cdfd738d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicHealth
-  m_HpMax: 24
+  m_HpMax: 64
 --- !u!114 &3997748025779733304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RollingShield
   m_EnergyMax: 64
-  m_ChangeRate: 32
+  m_ChangeRate: 64
 --- !u!114 &1977028258292569750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthGaugeUpdater
   m_ShieldChannel: {fileID: 11400000, guid: 0950cc8b5c19e42449f9e748e09c1250, type: 2}
   m_HealthChannel: {fileID: 11400000, guid: 89274395efeed3844af3ec76998ff165, type: 2}
+  m_SetupAnimationDuration: 2
 --- !u!1 &3405645095827148436
 GameObject:
   m_ObjectHideFlags: 0

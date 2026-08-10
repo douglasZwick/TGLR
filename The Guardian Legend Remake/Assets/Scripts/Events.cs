@@ -22,6 +22,9 @@ public static class Events
   public static readonly EventKey<MovementEventData> Moved = new();
 
   // Health Events
+  public static readonly EventKey<HealthEventData> HealthSetup = new();
+  public static readonly EventKey<HealthEventData> ShieldSetup = new();
+
   public static readonly EventKey<HealthEventData> DamageRequest = new();
   public static readonly EventKey<HealthEventData> HealRequest = new();
   public static readonly EventKey<HealthEventData> DamagePreProcess = new();
@@ -51,11 +54,11 @@ public static class Events
   public static readonly EventKey<ShakeEventData> ShakeRequest = new();
 
   // Gauge Events
+  public static readonly EventKey<GaugeEventData> GaugeSetup = new();
   public static readonly EventKey<GaugeEventData> GaugeValueChanged = new();
   public static readonly EventKey<GaugeEventData> GaugeChangeStarted = new();
   public static readonly EventKey<GaugeEventData> GaugeUpdate = new();
   public static readonly EventKey<GaugeEventData> GaugeChangeEnded = new();
-  public static readonly EventKey<GaugeEventData> GaugeSetup = new();
 }
 
 

@@ -28,6 +28,16 @@ public abstract class Shield : MonoBehaviour
   }
 
 
+  void Start()
+  {
+    var healthED = new HealthEventData()
+    {
+      m_EnergyMax = m_EnergyMax,
+    };
+    ED.Dispatch(Events.ShieldSetup, healthED);
+  }
+
+
   private void OnDamagePreProcess(HealthEventData healthED)
   {
     if (Empty) return;

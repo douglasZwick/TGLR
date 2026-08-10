@@ -30,6 +30,16 @@ public abstract class Health : MonoBehaviour
   }
 
 
+  void Start()
+  {
+    var healthED = new HealthEventData()
+    {
+      m_HpMax = m_HpMax,
+    };
+    ED.Dispatch(Events.HealthSetup, healthED);
+  }
+
+
   protected void OnDamageRequest(HealthEventData healthED)
   {
     if (Dead) return;

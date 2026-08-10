@@ -30,7 +30,7 @@ public class BarGauge : MonoBehaviour
   Color m_DeltaBarDefaultColor;
   float m_SetupTargetBarWidth;
   float m_SetupAnimationDuration;
-  float m_SetupAnimationTimer;
+  float m_SetupAnimationTimer = -1;
 
   float MeterWidth => m_RectTransform.rect.width;
   float FrameUnitWidth => m_FrameUnitPrefab.rect.width;
@@ -39,7 +39,7 @@ public class BarGauge : MonoBehaviour
                                   m_DeltaBarDefaultColor.g,
                                   m_DeltaBarDefaultColor.b,
                                   0);
-  bool SetupAnimating => m_SetupAnimationTimer > 0;
+  bool SetupAnimating => m_SetupAnimationTimer >= 0;
   int FrameUnitCount => m_Frame.childCount;
 
   void Awake()
@@ -47,19 +47,18 @@ public class BarGauge : MonoBehaviour
     m_RectTransform = (RectTransform)transform;
     m_DeltaBarImage = m_DeltaBar.GetComponent<Image>();
     m_DeltaBarDefaultColor = m_DeltaBarImage.color;
-    // ResetFrame();
-    // TODO:
-    //   ResetFrame on awake, animate value on Start somehow
+
+    ResetFrame();
   }
 
 
   void OnEnable()
   {
+    m_EventChannel.AddListener(Events.GaugeSetup, OnGaugeSetup);
     m_EventChannel.AddListener(Events.GaugeValueChanged, OnGaugeValueChanged);
     m_EventChannel.AddListener(Events.GaugeChangeStarted, OnGaugeChangeStarted);
     m_EventChannel.AddListener(Events.GaugeUpdate, OnGaugeUpdate);
     m_EventChannel.AddListener(Events.GaugeChangeEnded, OnGaugeChangeEnded);
-    m_EventChannel.AddListener(Events.GaugeSetup, OnGaugeSetup);
   }
 
 
@@ -79,6 +78,12 @@ public class BarGauge : MonoBehaviour
     m_Frame.DestroyAllChildren();
     SetBarLength(m_Bar, 0, 0);
     SetBarLength(m_DeltaBar, 0, 0);
+  }
+
+
+  void OnGaugeSetup(GaugeEventData gaugeED)
+  {
+    BeginSetupAnimation(gaugeED.m_MaxValue, gaugeED.m_AnimationDuration);
   }
 
 
@@ -113,12 +118,6 @@ public class BarGauge : MonoBehaviour
   void OnGaugeChangeEnded(GaugeEventData gaugeED)
   {
     
-  }
-
-
-  void OnGaugeSetup(GaugeEventData gaugeED)
-  {
-    BeginSetupAnimation(gaugeED.m_MaxValue, gaugeED.m_AnimationDuration);
   }
 
 
@@ -168,17 +167,24 @@ public class BarGauge : MonoBehaviour
     var width = m_SetupTargetBarWidth * t;
     var frameUnitSpan = (int)(width / FrameUnitWidth);
 
-    if (frameUnitSpan > FrameUnitCount)
+    if (frameUnitSpan + 1 > FrameUnitCount)
       AddFrameUnit();
 
     m_Bar.sizeDelta = Vector2.right * width;
     m_DeltaBar.sizeDelta = Vector2.right * frameUnitSpan * FrameUnitWidth;
+    
+    m_SetupAnimationTimer += dt;
+
+    if (m_SetupAnimationTimer >= m_SetupAnimationDuration)
+      EndSetupAnimation();
   }
 
 
   void EndSetupAnimation()
   {
-    
+    SetBarLength(m_Bar, 1, 1);
+    SetBarLength(m_DeltaBar, 1, 1);
+    m_SetupAnimationTimer = -1;
   }
 
 
@@ -198,10 +204,10 @@ public class BarGauge : MonoBehaviour
 
   void OnDisable()
   {
+    m_EventChannel.RemoveListener(Events.GaugeSetup, OnGaugeSetup);
     m_EventChannel.RemoveListener(Events.GaugeValueChanged, OnGaugeValueChanged);
     m_EventChannel.RemoveListener(Events.GaugeChangeStarted, OnGaugeChangeStarted);
     m_EventChannel.RemoveListener(Events.GaugeUpdate, OnGaugeUpdate);
     m_EventChannel.RemoveListener(Events.GaugeChangeEnded, OnGaugeChangeEnded);
-    m_EventChannel.RemoveListener(Events.GaugeSetup, OnGaugeSetup);
   }
 }
