@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4860235464463239596}
   - component: {fileID: 5370369501588703238}
   m_Layer: 5
-  m_Name: ShieldFrameUnit
+  m_Name: UpperFrameUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

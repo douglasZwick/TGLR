@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 [RequireComponent(typeof(RectTransform))]
@@ -13,7 +13,13 @@ public class BarGauge : MonoBehaviour
   [SerializeField]
   RectTransform m_DeltaBar;
   [SerializeField]
+  RectTransform m_Frame;
+  [SerializeField]
+  TMP_Text m_Label;
+  [SerializeField]
   float m_AnimationDuration = 0.1f;
+  [SerializeField]
+  RectTransform m_FrameUnitPrefab;
 
   RectTransform m_RectTransform;
   Image m_DeltaBarImage;
@@ -50,6 +56,12 @@ public class BarGauge : MonoBehaviour
   {
     if (Animating)
       Animate(Time.deltaTime);
+  }
+
+
+  void ResetFrame()
+  {
+    m_Frame.DestroyAllChildren();
   }
 
 
