@@ -69,7 +69,7 @@ public class RollingShield : Shield
 
   void BeginRollingDown(HealthEventData healthED)
   {
-    m_TargetEnergy = Mathf.Max(m_Energy - healthED.m_IncomingShieldDamage, 0);
+    m_TargetEnergy = Mathf.Max(m_Energy - healthED.m_DamageData.m_ShieldDamageAmount, 0);
     m_OngoingChange = new ActiveChange(healthED);
   }
 
@@ -96,7 +96,7 @@ public class RollingShield : Shield
 
   void BeginRollingUp(HealthEventData healthED)
   {
-    m_TargetEnergy = Mathf.Min(m_Energy + healthED.m_IncomingShieldHeal, m_EnergyMax);
+    m_TargetEnergy = Mathf.Min(m_Energy + healthED.m_HealData.m_ShieldHealAmount, m_EnergyMax);
     m_OngoingChange = new ActiveChange(healthED);
   }
 

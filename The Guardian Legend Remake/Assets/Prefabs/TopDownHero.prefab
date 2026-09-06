@@ -96,6 +96,37 @@ Transform:
   - {fileID: 1623792148473012707}
   m_Father: {fileID: 2077481619734993740}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1373249848753157773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439147046292902637}
+  m_Layer: 0
+  m_Name: SpecialWeapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439147046292902637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373249848753157773}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1506040135956623597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1563365301327048835
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +392,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8867436396802777069}
+  - {fileID: 5049879198794817494}
   - {fileID: 7424168318377528221}
+  - {fileID: 1439147046292902637}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1835042705609216453
@@ -543,7 +576,7 @@ MonoBehaviour:
   m_CooldownDuration: 0.25
   m_MaxClusters: 4
   m_ShootSound: {fileID: 11400000, guid: 7ac6e6b0c144b6c42a7d2e9d963e245d, type: 2}
-  m_GunBaseNode: {fileID: 7424168318377528221}
+  m_GunProxyNode: {fileID: 7424168318377528221}
 --- !u!114 &1687224801663253635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RollingShield
   m_EnergyMax: 64
+  m_DamageSource: {fileID: 5283051743168908051}
   m_ChangeRate: 64
 --- !u!114 &1977028258292569750
 MonoBehaviour:
@@ -668,6 +702,70 @@ Transform:
   - {fileID: 8060772761470492250}
   m_Father: {fileID: 1549835164740185942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3834239897736320473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5049879198794817494}
+  - component: {fileID: 6900339236071776088}
+  - component: {fileID: 5283051743168908051}
+  m_Layer: 0
+  m_Name: ShieldProxyNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5049879198794817494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834239897736320473}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1506040135956623597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6900339236071776088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834239897736320473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
+--- !u!114 &5283051743168908051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834239897736320473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec07dfe0389cffe48964491c7a5e0757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSource
+  m_DamageData:
+    m_ShieldDamageAmount: 16
+    m_HealthDamageAmount: 16
+    m_Penetration: 0
+    m_Durability: 0
+    m_UseDurability: 0
+    m_Type: 0
 --- !u!1 &3879721378439334181
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,8 +872,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7424168318377528221}
+  - component: {fileID: 1869796476608626884}
+  - component: {fileID: 7405441878241409599}
   m_Layer: 0
-  m_Name: GunRotationNode
+  m_Name: GunProxyNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,6 +898,37 @@ Transform:
   - {fileID: 815920317614777754}
   m_Father: {fileID: 1506040135956623597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1869796476608626884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5841056224172843983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
+--- !u!114 &7405441878241409599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5841056224172843983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec07dfe0389cffe48964491c7a5e0757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSource
+  m_DamageData:
+    m_ShieldDamageAmount: 16
+    m_HealthDamageAmount: 16
+    m_Penetration: 0
+    m_Durability: 0
+    m_UseDurability: 0
+    m_Type: 0
 --- !u!1 &6264501888977848312
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class DummyCannon : MonoBehaviour
   private AudioItem m_ShootSound;
   [SerializeField]
   private bool m_Noisy = false;
+  [SerializeField]
+  private DamageSource m_DamageSource;
 
   private float m_Timer = 0;
   private int m_ShotIndex = 0;
@@ -48,7 +50,20 @@ public class DummyCannon : MonoBehaviour
       GoPew();
       
     var bullet = Instantiate(m_BulletPrefab, m_FiringPoint.position, m_FiringPoint.rotation);
-    bullet.Setup(m_BulletSpeed);
+
+    var healthED = new HealthEventData()
+    {
+      m_Source = m_DamageSource,
+      m_DamageData = m_DamageSource.Data,
+    };
+    
+    var projectileED = new ProjectileEventData()
+    {
+      m_Speed = m_BulletSpeed,
+    };
+
+    bullet.ED.Dispatch(Events.DamageSetup, healthED);
+    bullet.ED.Dispatch(Events.ProjectileSetup, projectileED);
 
     AudioManager.Instance.Play(m_ShootSound);
   }

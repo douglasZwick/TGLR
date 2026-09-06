@@ -49,7 +49,7 @@ public abstract class Health : MonoBehaviour
 
     ED.Dispatch(Events.DamagePreProcess, healthED);
 
-    if (healthED.m_IncomingHealthDamage <= 0) return;
+    if (healthED.m_DamageData.m_HealthDamageAmount <= 0) return;
     
     ReceiveDamage(healthED);
   }
@@ -58,7 +58,7 @@ public abstract class Health : MonoBehaviour
   void OnHealRequest(HealthEventData healthED)
   {
     if (Dead) return;
-    if (healthED.m_IncomingHealthHeal <= 0) return;
+    if (healthED.m_HealData.m_HealthHealAmount <= 0) return;
     
     ReceiveHeal(healthED);
   }

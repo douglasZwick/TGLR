@@ -70,7 +70,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_MaxValue = healthED.m_EnergyMax,
       m_StartingValue = healthED.m_StartingEnergy,
       m_CurrentValue = healthED.m_CurrentEnergy,
-      m_EndingValue = healthED.m_StartingEnergy - healthED.m_IncomingShieldDamage,
+      m_EndingValue = healthED.m_StartingEnergy - healthED.m_DamageData.m_ShieldDamageAmount,
     };
     m_ShieldChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
@@ -83,7 +83,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_MaxValue = healthED.m_EnergyMax,
       m_StartingValue = healthED.m_StartingEnergy,
       m_CurrentValue = healthED.m_CurrentEnergy,
-      m_EndingValue = healthED.m_StartingEnergy + healthED.m_IncomingShieldDamage,
+      m_EndingValue = healthED.m_StartingEnergy + healthED.m_HealData.m_ShieldHealAmount,
     };
     m_ShieldChannel.Dispatch(Events.GaugeChangeStarted, gaugeED);
   }
@@ -107,7 +107,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_MaxValue = healthED.m_HpMax,
       m_StartingValue = healthED.m_CurrentHp,
       m_CurrentValue = healthED.m_CurrentHp,
-      m_EndingValue = healthED.m_CurrentHp - healthED.m_IncomingHealthDamage,
+      m_EndingValue = healthED.m_CurrentHp - healthED.m_DamageData.m_HealthDamageAmount,
     };
     m_HealthChannel.Dispatch(Events.GaugeValueChanged, gaugeED);
   }
@@ -120,7 +120,7 @@ public class HealthGaugeUpdater : MonoBehaviour
       m_MaxValue = healthED.m_HpMax,
       m_StartingValue = healthED.m_CurrentHp,
       m_CurrentValue = healthED.m_CurrentHp,
-      m_EndingValue = healthED.m_CurrentHp + healthED.m_IncomingHealthHeal,
+      m_EndingValue = healthED.m_CurrentHp + healthED.m_HealData.m_HealthHealAmount,
     };
     m_HealthChannel.Dispatch(Events.GaugeUpdate, gaugeED);
   }

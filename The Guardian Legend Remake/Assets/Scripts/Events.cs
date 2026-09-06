@@ -24,6 +24,7 @@ public static class Events
   // Health Events
   public static readonly EventKey<HealthEventData> HealthSetup = new();
   public static readonly EventKey<HealthEventData> ShieldSetup = new();
+  public static readonly EventKey<HealthEventData> DamageSetup = new();
 
   public static readonly EventKey<HealthEventData> DamageRequest = new();
   public static readonly EventKey<HealthEventData> HealRequest = new();
@@ -59,6 +60,12 @@ public static class Events
   public static readonly EventKey<GaugeEventData> GaugeChangeStarted = new();
   public static readonly EventKey<GaugeEventData> GaugeUpdate = new();
   public static readonly EventKey<GaugeEventData> GaugeChangeEnded = new();
+
+  // ProjectileEvents
+  public static readonly EventKey<ProjectileEventData> ProjectileSetup = new();
+
+  // DurabilityEvents (may be renamed later)
+  public static readonly EventKey<DurabilityEventData> DurabilityExhausted = new();
 }
 
 
@@ -95,21 +102,17 @@ public class ScrollEventData
 public class HealthEventData
 {
   public DamageSource m_Source;
-  public float m_IncomingShieldDamage;
-  public float m_IncomingHealthDamage;
-  public float m_IncomingShieldHeal;
-  public float m_IncomingHealthHeal;
+  public DamageData m_DamageData;
+  public HealData m_HealData;
   public float m_StartingEnergy;
-  public float m_StartingHp;
   public float m_CurrentEnergy;
-  public float m_CurrentHp;
-  public float m_Penetration;
-  public float m_HpMax;
   public float m_EnergyMax;
-  public DamageType m_Type;
+  public float m_StartingHp;
+  public float m_CurrentHp;
+  public float m_HpMax;
 
   public void SourceDispatch<TData>(EventKey<TData> key, TData eventData)
-    => m_Source.ED.Dispatch(key, eventData);
+    => m_Source.Dispatch(key, eventData);
 }
 
 
@@ -126,4 +129,16 @@ public class GaugeEventData
   public float m_CurrentValue;
   public float m_EndingValue;
   public float m_AnimationDuration;
+}
+
+
+public class ProjectileEventData
+{
+  public float m_Speed;
+}
+
+
+public class DurabilityEventData
+{
+  
 }

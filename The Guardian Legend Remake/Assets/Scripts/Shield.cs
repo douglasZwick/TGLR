@@ -9,6 +9,8 @@ public abstract class Shield : MonoBehaviour
   protected float m_Energy;
   [SerializeField]
   protected float m_EnergyMax = 64;
+  [SerializeField][Tooltip("The DamageSource that this Shield should use for contact damage")]
+  protected DamageSource m_DamageSource;
 
   protected bool Full => m_Energy >= m_EnergyMax;
   protected bool Empty => m_Energy <= 0;
@@ -45,9 +47,12 @@ public abstract class Shield : MonoBehaviour
     healthED.m_EnergyMax = m_EnergyMax;
 
     ReceiveDamage(healthED);
+    m_DamageSource.ReturnDamage(healthED.m_Source);
 
-    var penetratingDamage = Mathf.Min(healthED.m_IncomingHealthDamage, healthED.m_Penetration);
-    healthED.m_IncomingHealthDamage = penetratingDamage;
+    var incomingHealthDamage = healthED.m_DamageData.m_HealthDamageAmount;
+    var penetration = healthED.m_DamageData.m_Penetration;
+    var penetratingDamage = Mathf.Min(incomingHealthDamage, penetration);
+    healthED.m_DamageData.m_HealthDamageAmount = penetratingDamage;
 
     // CONSIDER:
     //   Maybe try a system with a threshold where, if the shields fall below it, some damage gets

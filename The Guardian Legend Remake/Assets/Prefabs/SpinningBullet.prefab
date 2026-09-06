@@ -555,6 +555,8 @@ MonoBehaviour:
   m_ShieldDamageAmount: 8
   m_HealthDamageAmount: 8
   m_Penetration: 0
+  m_Durability: 0
+  m_UseDurability: 0
   m_Type: 0
 --- !u!114 &8937426263332149693
 MonoBehaviour:

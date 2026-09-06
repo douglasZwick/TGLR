@@ -5,8 +5,10 @@ public class BasicHealth : Health
 {
   protected override void ReceiveDamage(HealthEventData healthED)
   {
+    Zbug.Log($"{name} was damaged: {healthED.m_DamageData}");
+
     healthED.m_StartingHp = m_Hp;
-    m_Hp = Mathf.Max(m_Hp - healthED.m_IncomingHealthDamage, 0);
+    m_Hp = Mathf.Max(m_Hp - healthED.m_DamageData.m_HealthDamageAmount, 0);
     healthED.m_CurrentHp = m_Hp;
     ED.Dispatch(Events.HealthReceivedDamage, healthED);
     healthED.SourceDispatch(Events.CausedHealthDamage, healthED);
@@ -18,8 +20,10 @@ public class BasicHealth : Health
 
   protected override void ReceiveHeal(HealthEventData healthED)
   {
+    Zbug.Log($"{name} was healed: {healthED.m_HealData}");
+
     healthED.m_StartingHp = m_Hp;
-    m_Hp = Mathf.Min(m_Hp + healthED.m_IncomingHealthHeal, m_HpMax);
+    m_Hp = Mathf.Min(m_Hp + healthED.m_HealData.m_HealthHealAmount, m_HpMax);
     healthED.m_CurrentHp = m_Hp;
     ED.Dispatch(Events.HealthReceivedHeal, healthED);
     // SourceDispatch CausedHealthHeal healthED

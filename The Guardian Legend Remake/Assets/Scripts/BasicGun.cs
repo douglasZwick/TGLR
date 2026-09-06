@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -22,7 +21,8 @@ public class BasicGun : MonoBehaviour
   private AudioItem m_ShootSound;
 
   [SerializeField]
-  private Transform m_GunBaseNode;
+  private Transform m_GunProxyNode;
+  private DamageSource m_GunDamageSource;
   private InputAction m_PrimaryFireAction;
   private float m_CooldownTimer = float.PositiveInfinity;
   private HashSet<BulletCluster> m_CurrentClusters = new();
@@ -40,6 +40,8 @@ public class BasicGun : MonoBehaviour
     var playerInput = GetComponent<PlayerInput>();
     m_PrimaryFireAction = playerInput.actions.FindAction("PrimaryFire");
 
+    m_GunDamageSource = m_GunProxyNode.GetComponent<DamageSource>();
+
     InitializeClusterPatterns();
   }
 
@@ -55,7 +57,7 @@ public class BasicGun : MonoBehaviour
 
   void InitializeClusterPatterns()
   {
-    var groups = m_GunBaseNode.Cast<Transform>()
+    var groups = m_GunProxyNode.Cast<Transform>()
       .Where(child => child.CompareTag(s_FiringGroupTag));
       
     foreach (var parent in groups)
@@ -99,8 +101,20 @@ public class BasicGun : MonoBehaviour
     {
       var bullet = Instantiate(m_BulletPrefab, firingPoint.position, firingPoint.rotation);
       cluster.Add(bullet);
-      var projectile = bullet.GetComponent<Projectile>();
-      projectile.Setup(m_BulletSpeed);
+
+      var healthED = new HealthEventData()
+      {
+        m_Source = m_GunDamageSource,
+        m_DamageData = m_GunDamageSource.Data,
+      };
+      
+      var projectileED = new ProjectileEventData()
+      {
+        m_Speed = m_BulletSpeed,
+      };
+
+      bullet.ED.Dispatch(Events.DamageSetup, healthED);
+      bullet.ED.Dispatch(Events.ProjectileSetup, projectileED);
     }
 
     AudioManager.Instance.Play(m_ShootSound);

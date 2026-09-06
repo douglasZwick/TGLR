@@ -4,8 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(DamageSource))]
 public class DamageOnCollide : MonoBehaviour
 {
-  public bool m_DamageOnCollisionEnter2D = true;
-  public bool m_DamageOnTriggerEnter2D = true;
+  [SerializeField]
+  private bool m_DamageOnCollisionEnter2D = true;
+  [SerializeField]
+  private bool m_DamageOnTriggerEnter2D = true;
 
   private DamageSource m_DamageSource;
 

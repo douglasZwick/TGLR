@@ -152,9 +152,8 @@ GameObject:
   - component: {fileID: 1319500484872193347}
   - component: {fileID: 9210784394975165092}
   - component: {fileID: 5989377189336236005}
-  - component: {fileID: 627862144462622222}
   - component: {fileID: 2895319824461921467}
-  - component: {fileID: 3888083200042266948}
+  - component: {fileID: -4237769379598446672}
   m_Layer: 10
   m_Name: HeroBullet
   m_TagString: Untagged
@@ -292,22 +291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lifespan
   m_Duration: 1
---- !u!114 &627862144462622222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5401732364572026295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42e116097fd1244197952049bc5f0e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnCollide
-  m_DestroyOnCollisionEnter2D: 1
-  m_DestroyOnTriggerEnter2D: 1
-  m_DestroyOnCollisionEnter3D: 0
-  m_DestroyOnTriggerEnter3D: 0
 --- !u!114 &2895319824461921467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,11 +303,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec07dfe0389cffe48964491c7a5e0757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
-  m_ShieldDamageAmount: 8
-  m_HealthDamageAmount: 8
-  m_Penetration: 0
-  m_Type: 0
---- !u!114 &3888083200042266948
+  m_DamageData:
+    m_ShieldDamageAmount: 0
+    m_HealthDamageAmount: 0
+    m_Penetration: 0
+    m_Durability: 0
+    m_UseDurability: 0
+    m_Type: 0
+--- !u!114 &-4237769379598446672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,11 +319,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5401732364572026295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 807cf7cf96e9cd84bad046cd1b1a81c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5107d34e6c19af44ca88e5efe3824058, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollide
-  m_DamageOnCollisionEnter2D: 1
-  m_DamageOnTriggerEnter2D: 1
+  m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollisionStay
 --- !u!1 &7761026206374977591
 GameObject:
   m_ObjectHideFlags: 0

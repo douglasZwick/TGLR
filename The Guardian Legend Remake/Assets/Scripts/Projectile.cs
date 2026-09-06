@@ -1,9 +1,12 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(EventDispatcher))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
 {
+  public EventDispatcher ED { get; private set; }
+
   public Orientation3D m_Orientation = Orientation3D.PosXForward;
 
   private Rigidbody2D m_RB;
@@ -23,13 +26,33 @@ public class Projectile : MonoBehaviour
 
   void Awake()
   {
+    ED = GetComponent<EventDispatcher>();
     m_RB = GetComponent<Rigidbody2D>();
+
+    SetVelocity(m_DefaultSpeed);
   }
 
 
-  public void Setup(float? speed = null)
+  void OnEnable()
   {
-    var actualSpeed = speed ?? m_DefaultSpeed;
-    m_RB.linearVelocity = actualSpeed * Forward;
+    ED.AddListener(Events.ProjectileSetup, OnProjectileSetup);
+  }
+
+
+  void OnProjectileSetup(ProjectileEventData projectileED)
+  {
+    SetVelocity(projectileED.m_Speed);
+  }
+
+  
+  void SetVelocity(float speed)
+  {
+    m_RB.linearVelocity = speed * Forward;
+  }
+
+
+  void OnDisable()
+  {
+    ED.RemoveListener(Events.ProjectileSetup, OnProjectileSetup);
   }
 }

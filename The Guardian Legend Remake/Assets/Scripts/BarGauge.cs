@@ -94,6 +94,7 @@ public class BarGauge : MonoBehaviour
     // TODO:
     //   When I get my action system in, use it to lerp the bar's width instead of snapping it
     SetBarLength(m_Bar, gaugeED.m_EndingValue, gaugeED.m_MaxValue);
+    SetNumber(gaugeED.m_EndingValue);
 
     BeginAnimatingBarColor();
   }
@@ -112,6 +113,7 @@ public class BarGauge : MonoBehaviour
   void OnGaugeUpdate(GaugeEventData gaugeED)
   {
     SetBarLength(m_DeltaBar, gaugeED.m_CurrentValue, gaugeED.m_MaxValue);
+    SetNumber(gaugeED.m_CurrentValue);
   }
 
 
@@ -193,6 +195,12 @@ public class BarGauge : MonoBehaviour
     // If max is 0, it's assumed that the intention is to set width to 0
     var width = max == 0 ? 0 : MeterWidth * current / max;
     bar.sizeDelta = Vector2.right * width;
+  }
+
+
+  void SetNumber(float number)
+  {
+    m_Label.text = ((int)number).ToString();
   }
 
 

@@ -7,18 +7,22 @@ public class DamageSource : MonoBehaviour
   public EventDispatcher ED { get; private set; }
 
   [SerializeField]
-  private float m_ShieldDamageAmount;
-  [SerializeField]
-  private float m_HealthDamageAmount;
-  [SerializeField]
-  private float m_Penetration;
-  [SerializeField]
-  private DamageType m_Type;
+  private DamageData m_DamageData;
+  
+  private DamageSource m_ProxyTarget;
+
+  public DamageData Data => m_DamageData;
 
 
   void Awake()
   {
     ED = GetComponent<EventDispatcher>();
+  }
+
+
+  void OnEnable()
+  {
+    ED.AddListener(Events.DamageSetup, OnDamageSetup);
   }
 
 
@@ -30,51 +34,68 @@ public class DamageSource : MonoBehaviour
   }
 
 
+  public void ReturnDamage(DamageSource damageSource)
+  {
+    // CONSIDER:
+    //   I don't expect that this function will ever be called in a context where this DamageSource uses Durability. As such, I feel it's safe to put the durability reduction code only in TryRequestDamage, rather than factoring it out and calling it here too.
+
+    var healthED = CreateHealthEventData();
+    damageSource.ED.Dispatch(Events.DamageRequest, healthED);
+  }
+
+
   HealthEventData CreateHealthEventData()
   {
     var healthED = new HealthEventData()
     {
       m_Source = this,
-      m_IncomingShieldDamage = m_ShieldDamageAmount,
-      m_IncomingHealthDamage = m_HealthDamageAmount,
-      m_Penetration = m_Penetration,
-      m_Type = m_Type,
+      m_DamageData = m_DamageData,
     };
 
     return healthED;
   }
-}
 
 
-public enum DamageType
-{
-  // No particular type
-  None,
-  // Damage by being too hot
-  Heat,
-  // Damage by being too cold
-  Cold,
-  // Damage by electrical shock
-  Electricity,
-  // Damage by chemical burn
-  Corrosion,
-  // Damage by biological interference
-  Toxic,
-  // Damage by shockwave
-  Force,
-  // Damage directly to the mind
-  Psychic,
-  // Damage caused by divine intervention
-  Holy,
+  void TryReduceDurability()
+  {
+    if (!Data.m_UseDurability) return;
 
-  // Damage by puncture via a fine point
-  Piercing,
-  // Damage by cut via a sharp edge
-  Slashing,
-  // Damage by blunt trauma
-  Smashing,
-  // Damage by being pulled apart
-  Tension,
-  // Damage by being crushed inward
-  Compression,
+    ReduceDurability();
+  }
+
+
+  void ReduceDurability()
+  {
+    // CONSIDER:
+    //   From my current perspective, there's no reason that the durability should ever change by
+    //   any amount other than 1
+    --m_DamageData.m_Durability;
+
+    if (m_DamageData.m_Durability > 0) return;
+
+    Dispatch(Events.DurabilityExhausted, new DurabilityEventData());
+  }
+
+
+  void OnDamageSetup(HealthEventData healthED)
+  {
+    m_ProxyTarget = healthED.m_Source;
+    m_DamageData = healthED.m_DamageData;
+  }
+
+
+  public void Dispatch<TData>(EventKey<TData> key, TData eventData)
+  {
+    ED.Dispatch(key, eventData);
+
+    if (m_ProxyTarget == null) return;
+
+    m_ProxyTarget.Dispatch(key, eventData);
+  }
+
+
+  void OnDisable()
+  {
+    ED.RemoveListener(Events.DamageSetup, OnDamageSetup);
+  }
 }

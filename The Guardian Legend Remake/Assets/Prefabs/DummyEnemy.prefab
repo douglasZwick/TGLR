@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7123919100501232561}
+  - component: {fileID: 4664533157005521352}
+  - component: {fileID: 415330435455668656}
   m_Layer: 11
-  m_Name: GunRotationNode
+  m_Name: GunProxyNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +34,37 @@ Transform:
   - {fileID: 3756161021758255795}
   m_Father: {fileID: 6889121370708424637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &4664533157005521352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275550784232198687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
+--- !u!114 &415330435455668656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275550784232198687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec07dfe0389cffe48964491c7a5e0757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSource
+  m_DamageData:
+    m_ShieldDamageAmount: 16
+    m_HealthDamageAmount: 8
+    m_Penetration: 0
+    m_Durability: 0
+    m_UseDurability: 0
+    m_Type: 0
 --- !u!1 &477648883482558254
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +319,8 @@ GameObject:
   - component: {fileID: 1664519718124411135}
   - component: {fileID: 4378421361620784150}
   - component: {fileID: 7461648657070183012}
+  - component: {fileID: 5578369303488557851}
+  - component: {fileID: 7185069825936008807}
   - component: {fileID: 858847711841001426}
   - component: {fileID: 1286667614452665883}
   - component: {fileID: 924978919596083378}
@@ -387,6 +422,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDied
   m_DestructionTarget: {fileID: 0}
+--- !u!114 &5578369303488557851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308268633276255667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec07dfe0389cffe48964491c7a5e0757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSource
+  m_DamageData:
+    m_ShieldDamageAmount: 16
+    m_HealthDamageAmount: 8
+    m_Penetration: 0
+    m_Durability: 0
+    m_UseDurability: 0
+    m_Type: 0
+--- !u!114 &7185069825936008807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308268633276255667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5107d34e6c19af44ca88e5efe3824058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollisionStay
 --- !u!114 &858847711841001426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +478,7 @@ MonoBehaviour:
   m_FiringPoint: {fileID: 3756161021758255795}
   m_ShootSound: {fileID: 11400000, guid: 32e28818647f5d24fb37356dde870faa, type: 2}
   m_Noisy: 0
+  m_DamageSource: {fileID: 415330435455668656}
 --- !u!114 &1286667614452665883
 MonoBehaviour:
   m_ObjectHideFlags: 0
