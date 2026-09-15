@@ -51,6 +51,9 @@ public class RollingShield : Shield
     ED.Dispatch(Events.ShieldReceivedDamage, healthED);
     ED.Dispatch(Events.ShieldDamageStarted, healthED);
 
+    var targetEnStr = $"| Target Sh: {m_TargetEnergy}".B().Color("#8AF");
+    Zbug.Log($"{name}'s shield was damaged: {healthED.m_DamageData} {targetEnStr}");
+
     healthED.SourceDispatch(Events.CausedShieldDamage, healthED);
   }
 
@@ -62,6 +65,8 @@ public class RollingShield : Shield
     BeginRollingUp(healthED);
     ED.Dispatch(Events.ShieldReceivedHeal, healthED);
     ED.Dispatch(Events.ShieldHealStarted, healthED);
+
+    Zbug.Log($"{name}'s shield was healed: {healthED.m_HealData} | Target Sh: {m_TargetEnergy}");
 
     // Dispatch CausedShieldHeal here if I ever create that event
   }

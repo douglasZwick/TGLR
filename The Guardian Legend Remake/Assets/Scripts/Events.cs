@@ -110,6 +110,7 @@ public class HealthEventData
   public float m_StartingHp;
   public float m_CurrentHp;
   public float m_HpMax;
+  public bool m_DamageOccurred = false;
 
   public void SourceDispatch<TData>(EventKey<TData> key, TData eventData)
     => m_Source.Dispatch(key, eventData);

@@ -5,13 +5,14 @@ public class BasicHealth : Health
 {
   protected override void ReceiveDamage(HealthEventData healthED)
   {
-    Zbug.Log($"{name} was damaged: {healthED.m_DamageData}");
-
     healthED.m_StartingHp = m_Hp;
     m_Hp = Mathf.Max(m_Hp - healthED.m_DamageData.m_HealthDamageAmount, 0);
     healthED.m_CurrentHp = m_Hp;
     ED.Dispatch(Events.HealthReceivedDamage, healthED);
     healthED.SourceDispatch(Events.CausedHealthDamage, healthED);
+
+    var currHpStr = $"| Curr Hp: {m_Hp}".B().Color("#F12");
+    Zbug.Log($"{name} was damaged: {healthED.m_DamageData} {currHpStr}");
 
     if (m_Hp <= 0)
       Die(healthED);

@@ -6,16 +6,14 @@ using UnityEngine;
 public class DamageOnCollisionStay : MonoBehaviour
 {
   // How long, in seconds, between each damage attempt
-  public static readonly float s_DelayDuration = 0.25f;
-  // TODO:
-  //   Replace this with mercy invincibility on Health
+  public static readonly float s_DelayDuration = 0.03f;
 
   public EventDispatcher ED { get; private set; }
 
   private DamageSource m_DamageSource;
-  private float m_Timer = s_DelayDuration;
+  private float m_Timer = 0;
   
-  private bool Ready => m_Timer >= s_DelayDuration;
+  private bool Ready => m_Timer < 0;
 
 
   protected virtual void Awake()
@@ -27,7 +25,7 @@ public class DamageOnCollisionStay : MonoBehaviour
 
   void Update()
   {
-    m_Timer += Time.deltaTime;
+    m_Timer -= Time.deltaTime;
   }
 
 
@@ -36,7 +34,7 @@ public class DamageOnCollisionStay : MonoBehaviour
     if (Ready)
     {
       AttemptDamage(collision.gameObject);
-      m_Timer = 0;
+      m_Timer = s_DelayDuration;
     }
   }
 

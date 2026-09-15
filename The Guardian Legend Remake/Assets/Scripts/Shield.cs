@@ -46,7 +46,12 @@ public abstract class Shield : MonoBehaviour
 
     healthED.m_EnergyMax = m_EnergyMax;
 
-    ReceiveDamage(healthED);
+    if (healthED.m_DamageData.m_ShieldDamageAmount > 0)
+    {
+      ReceiveDamage(healthED);
+      healthED.m_DamageOccurred = true;
+    }
+
     m_DamageSource.ReturnDamage(healthED.m_Source);
 
     var incomingHealthDamage = healthED.m_DamageData.m_HealthDamageAmount;

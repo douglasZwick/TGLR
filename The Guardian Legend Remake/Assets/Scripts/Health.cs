@@ -9,11 +9,14 @@ public abstract class Health : MonoBehaviour
   protected float m_Hp;
   [SerializeField]
   protected float m_HpMax = 3;
+  [SerializeField]
+  protected float m_MercyDuration = 0;  // How long in s before you can be damaged again
+  protected float m_MercyTimer = 0;
 
   protected bool HpFull => m_Hp >= m_HpMax;
   protected bool Dead => m_Hp <= 0;
 
-  protected virtual bool Invincible => false;
+  protected virtual bool Invincible => m_MercyTimer > 0;
 
 
   protected virtual void Awake()
@@ -40,7 +43,13 @@ public abstract class Health : MonoBehaviour
   }
 
 
-  protected void OnDamageRequest(HealthEventData healthED)
+  void Update()
+  {
+    m_MercyTimer -= Time.deltaTime;
+  }
+
+
+  void OnDamageRequest(HealthEventData healthED)
   {
     if (Dead) return;
     if (Invincible) return;
@@ -49,9 +58,14 @@ public abstract class Health : MonoBehaviour
 
     ED.Dispatch(Events.DamagePreProcess, healthED);
 
-    if (healthED.m_DamageData.m_HealthDamageAmount <= 0) return;
+    if (healthED.m_DamageData.m_HealthDamageAmount > 0)
+    {
+      ReceiveDamage(healthED);
+      healthED.m_DamageOccurred = true;
+    }
     
-    ReceiveDamage(healthED);
+    if (healthED.m_DamageOccurred)
+      BeginMercy();
   }
 
 
@@ -82,6 +96,12 @@ public abstract class Health : MonoBehaviour
     Zbug.Log($"{name}'s HP is maxed out!");
 
     ED.Dispatch(Events.HealthFilled, healthED);
+  }
+
+
+  void BeginMercy()
+  {
+    m_MercyTimer = m_MercyDuration;
   }
 
 

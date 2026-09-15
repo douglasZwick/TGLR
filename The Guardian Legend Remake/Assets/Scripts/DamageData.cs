@@ -18,11 +18,13 @@ public struct DamageData
     var use = m_UseDurability;
     var type = m_Type;
 
-    var penStr = pen == 0 ? "" : $"Pen {pen}";
-    var durStr = use ? $"Dur {dur}" : "";
-    var typeStr = m_Type == DamageType.None ? "" : $"{type}";
+    var shStr = $"Sh {sh}";
+    var hpStr = $" | Hp {hp}";
+    var penStr = pen == 0 ? "" : $" | Pen {pen}";
+    var durStr = use ? $" | Dur {dur}" : "";
+    var typeStr = m_Type == DamageType.None ? "" : $" | {type}";
 
-    return $"Sh {sh} | Hp {hp} | {penStr} | {durStr} | {typeStr}";
+    return $"{shStr}{hpStr}{penStr}{durStr}{typeStr}";
   }
 }
 

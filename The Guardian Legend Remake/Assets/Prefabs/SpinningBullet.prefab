@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 6393235308069372917}
   - component: {fileID: 6833692198118156702}
   - component: {fileID: 5663112981339624982}
-  - component: {fileID: 8937426263332149693}
+  - component: {fileID: 2927240862007599732}
   - component: {fileID: 8370882309327209643}
   - component: {fileID: 8215020432609846673}
   - component: {fileID: 8596581536476232735}
@@ -552,13 +552,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec07dfe0389cffe48964491c7a5e0757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
-  m_ShieldDamageAmount: 8
-  m_HealthDamageAmount: 8
-  m_Penetration: 0
-  m_Durability: 0
-  m_UseDurability: 0
-  m_Type: 0
---- !u!114 &8937426263332149693
+  m_DamageData:
+    m_ShieldDamageAmount: 0
+    m_HealthDamageAmount: 0
+    m_Penetration: 0
+    m_Durability: 0
+    m_UseDurability: 0
+    m_Type: 0
+--- !u!114 &2927240862007599732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -567,11 +568,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7248505257414153693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 807cf7cf96e9cd84bad046cd1b1a81c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5107d34e6c19af44ca88e5efe3824058, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollide
-  m_DamageOnCollisionEnter2D: 1
-  m_DamageOnTriggerEnter2D: 1
+  m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollisionStay
 --- !u!114 &8370882309327209643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicHealth
   m_HpMax: 1
+  m_MercyDuration: 0
 --- !u!114 &8215020432609846673
 MonoBehaviour:
   m_ObjectHideFlags: 0
