@@ -927,7 +927,7 @@ MonoBehaviour:
     m_HealthDamageAmount: 16
     m_Penetration: 0
     m_Durability: 0
-    m_UseDurability: 0
+    m_UseDurability: 1
     m_Type: 0
 --- !u!1 &6264501888977848312
 GameObject:

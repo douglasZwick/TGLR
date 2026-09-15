@@ -28,9 +28,13 @@ public class DamageSource : MonoBehaviour
 
   public void TryRequestDamage(GameObject target)
   {
-    if (!target.TryGetComponent<EventDispatcher>(out var ed)) return;
-    var healthED = CreateHealthEventData();
-    ed.Dispatch(Events.DamageRequest, healthED);
+    if (target.TryGetComponent<EventDispatcher>(out var ed))
+    {
+      var healthED = CreateHealthEventData();
+      ed.Dispatch(Events.DamageRequest, healthED);
+    }
+    
+    TryReduceDurability();
   }
 
 

@@ -154,6 +154,8 @@ GameObject:
   - component: {fileID: 5989377189336236005}
   - component: {fileID: 2895319824461921467}
   - component: {fileID: -4237769379598446672}
+  - component: {fileID: 7339010006246535397}
+  - component: {fileID: -1483904124739512718}
   m_Layer: 10
   m_Name: HeroBullet
   m_TagString: Untagged
@@ -322,6 +324,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5107d34e6c19af44ca88e5efe3824058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollisionStay
+--- !u!114 &7339010006246535397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401732364572026295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f626bf1c283174b4d859e6ec5f255bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KillOnDurabilityExhausted
+--- !u!114 &-1483904124739512718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401732364572026295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f2d95c3e1806c4b8f0133348d4be49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDied
+  m_DestructionTarget: {fileID: 0}
 --- !u!1 &7761026206374977591
 GameObject:
   m_ObjectHideFlags: 0
