@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 3362146076280226106}
   - component: {fileID: 5587741762263774267}
   - component: {fileID: 7141368927070011835}
+  - component: {fileID: 1566419966980730176}
   - component: {fileID: 1687224801663253635}
   - component: {fileID: 3997748025779733304}
   - component: {fileID: 1977028258292569750}
@@ -577,6 +578,19 @@ MonoBehaviour:
   m_MaxClusters: 4
   m_ShootSound: {fileID: 11400000, guid: 7ac6e6b0c144b6c42a7d2e9d963e245d, type: 2}
   m_GunProxyNode: {fileID: 7424168318377528221}
+--- !u!114 &1566419966980730176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790449705323218029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1c0e201e8fa164b8bc00e7275633ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialWeaponsSystem
+  m_InventoryNode: {fileID: 1439147046292902637}
 --- !u!114 &1687224801663253635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicHealth
   m_HpMax: 64
+  m_MercyDuration: 0
 --- !u!114 &3997748025779733304
 MonoBehaviour:
   m_ObjectHideFlags: 0

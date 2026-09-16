@@ -66,6 +66,10 @@ public static class Events
 
   // DurabilityEvents (may be renamed later)
   public static readonly EventKey<DurabilityEventData> DurabilityExhausted = new();
+
+  // SpecialWeaponEvents
+  public static readonly EventKey<SpecialWeaponEventData> ActivationRequest = new();
+  public static readonly EventKey<SpecialWeaponEventData> DeactivationRequest = new();
 }
 
 
@@ -140,6 +144,12 @@ public class ProjectileEventData
 
 
 public class DurabilityEventData
+{
+  
+}
+
+
+public class SpecialWeaponEventData
 {
   
 }
