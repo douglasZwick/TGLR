@@ -83,6 +83,8 @@ public class DamageSource : MonoBehaviour
 
   void OnDamageSetup(HealthEventData healthED)
   {
+    // TODO:
+    //   Figure out why I separated these and write a helpful comment here explaining it
     m_ProxyTarget = healthED.m_Source;
     m_DamageData = healthED.m_DamageData;
   }

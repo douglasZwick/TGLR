@@ -70,6 +70,7 @@ public static class Events
   // SpecialWeaponEvents
   public static readonly EventKey<SpecialWeaponEventData> ActivationRequest = new();
   public static readonly EventKey<SpecialWeaponEventData> DeactivationRequest = new();
+  public static readonly EventKey<SpecialWeaponEventData> Activated = new();
 }
 
 
@@ -151,5 +152,5 @@ public class DurabilityEventData
 
 public class SpecialWeaponEventData
 {
-  
+  public Transform m_FiringPoint;
 }
