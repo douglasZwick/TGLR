@@ -41,7 +41,7 @@ public class SpecialWeaponsSystem : MonoBehaviour
 
   void Update()
   {
-    if (m_SecondaryFireAction.IsPressed())
+    if (m_SecondaryFireAction.WasPerformedThisFrame())
       RequestActivation();
   }
 
@@ -145,3 +145,15 @@ public class SpecialWeaponsSystem : MonoBehaviour
     
   }
 }
+
+
+/// TODO:
+///   Annoying problem to deal with: the dang ol firing point I made for special weapons ain't
+///   attached to any dang ol node that the dang ol facer rotates when the hero needs to be
+///   faced. The to-do here is that I need to reevaluate my approach to rotating my hero. I'm
+///   leaning at this moment toward consolidating the way firing works between my the primary
+///   gun and the special weapons system, but I'm not in a position to make a decision on the
+///   matter right now.
+/// 
+///   As a band-aid fix, I'm simply pointing the SpecialWeaponsSystem's m_FiringPoint
+///   reference at the primary gun's central firing point for now.

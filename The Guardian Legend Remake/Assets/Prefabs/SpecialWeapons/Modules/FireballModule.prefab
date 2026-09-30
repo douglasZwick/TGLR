@@ -76,11 +76,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
   m_DamageData:
-    m_ShieldDamageAmount: 0
-    m_HealthDamageAmount: 0
+    m_ShieldDamageAmount: 8
+    m_HealthDamageAmount: 8
     m_Penetration: 0
-    m_Durability: 0
-    m_UseDurability: 0
+    m_Durability: 100
+    m_UseDurability: 1
     m_Type: 0
 --- !u!114 &962013599170243661
 MonoBehaviour:
@@ -96,5 +96,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
   m_ProjectilePrefab: {fileID: 1026917063321953219, guid: 534091711e5a65d429436c3075fd7300, type: 3}
   m_DamageSource: {fileID: 8554154040250442007}
-  m_ProjectileSpeed: 10
-  m_ShootSound: {fileID: 0}
+  m_ProjectileSpeed: 4
+  m_ShootSound: {fileID: 11400000, guid: 4fb99da58fae41a418db3a70dbd3737e, type: 2}
