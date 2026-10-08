@@ -73,3 +73,18 @@ public class ProjectileWeapon : MonoBehaviour
     ED.RemoveListener(Events.Activated, OnActivated);
   }
 }
+
+
+/*
+
+Here's how this should work:
+
+- ProjectileWeapon is responsible for creating projectiles. (I might want to rename it to ProjectileCreator or something like that.) It does so at the behest of some other component that requests its activation, via some event. Right now it uses a SpecialWeaponEventData, but I should refactor this so that it uses a more unified type that can include the basic gun (and possibly other stuff as well, like maaaybe enemies can use this too...?). Whatever event type I use, it should include a "firing point" Transform that defines where the projectile will spawn and facing what direction.
+- SpecialWeapon is the interface that can dispatch Activated to a ProjectileWeapon. It does this via SpecialWeaponEventData, as described above. In the current paradigm, BasicGun keeps track of its own firing points. Perhaps it can become the new "interface" component used specifically for the primary weapon.
+- A projectile weapon interface component will need:
+  - Firing points
+  - Clusters
+  - Max clusters
+  - Cooldown
+
+*/

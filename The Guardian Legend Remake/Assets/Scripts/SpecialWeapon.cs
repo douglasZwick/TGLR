@@ -19,6 +19,8 @@ public class SpecialWeapon : MonoBehaviour
   [SerializeField]
   private string m_Description;
   [SerializeField]
+  private int m_ChipCost;
+  [SerializeField]
   private ActivationType m_ActivationType = ActivationType.Discrete;
 
   public string DisplayName => m_DisplayName;
@@ -42,7 +44,19 @@ public class SpecialWeapon : MonoBehaviour
   {
     // Make sure we can activate the weapon. Reasons we wouldn't be able to include not having
     //   enough ammo, the weapon cooling down, etc.
-    // For now, though, we'll just send it through
+    if (m_ChipCost > specialWeaponED.m_AvailableChips)
+    {
+      // TODO: failure feedback
+
+      return;
+    }
+
+    // Decrement the event data's available chip count, so we can check it in the
+    //   SpecialWeaponsSystem to see whether the activation succeeded.
+    // TODO:
+    //   If m_ChipCost is 0, then it will always look like it failed. Figure out how to handle this
+    specialWeaponED.m_AvailableChips -= m_ChipCost;
+
     Activate(specialWeaponED);
   }
 

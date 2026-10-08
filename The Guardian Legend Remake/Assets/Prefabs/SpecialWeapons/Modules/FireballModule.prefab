@@ -62,6 +62,7 @@ MonoBehaviour:
   m_DisplayName: Fireball
   m_Icon: {fileID: 970930571429669622, guid: bf06133037d9b0340a0ef4029b79388f, type: 3}
   m_Description: Fires a slow-moving projectile that burns as it goes
+  m_ChipCost: 4
   m_ActivationType: 0
 --- !u!114 &8554154040250442007
 MonoBehaviour:

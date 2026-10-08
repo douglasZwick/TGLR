@@ -17,6 +17,9 @@ public class SpecialWeaponsSystem : MonoBehaviour
   [SerializeField]
   private Transform m_FiringPoint;
   private InputAction m_SecondaryFireAction;
+  [SerializeField]
+  private int m_MaxChips = 50;
+  private int m_Chips;
   
   private bool Empty => m_Arsenal.Count <= 0;
   private SpecialWeapon CurrentWeapon => m_Arsenal[m_WeaponIndex];
@@ -48,6 +51,8 @@ public class SpecialWeaponsSystem : MonoBehaviour
 
   void Initialize()
   {
+    m_Chips = m_MaxChips;
+
     foreach (Transform child in m_InventoryNode)
     {
       if (!child.TryGetComponent<SpecialWeapon>(out var specialWeapon)) continue;
@@ -115,6 +120,7 @@ public class SpecialWeaponsSystem : MonoBehaviour
     var specialWeaponED = new SpecialWeaponEventData()
     {
       m_FiringPoint = m_FiringPoint,
+      m_AvailableChips = m_Chips,
     };
 
     // TODO:
@@ -124,6 +130,12 @@ public class SpecialWeaponsSystem : MonoBehaviour
     //   terms of other components that might want to listen in and do something, so there's
     //   probably very little that I'd be missing out on there
     CurrentWeapon.ED.Dispatch(Events.ActivationRequest, specialWeaponED);
+
+    if (specialWeaponED.m_AvailableChips != m_Chips)
+    {
+      // feedback for spending chips, probably dispatch an event here
+      m_Chips = specialWeaponED.m_AvailableChips;
+    }
   }
 
 

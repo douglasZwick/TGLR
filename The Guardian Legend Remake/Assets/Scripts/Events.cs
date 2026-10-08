@@ -153,4 +153,5 @@ public class DurabilityEventData
 public class SpecialWeaponEventData
 {
   public Transform m_FiringPoint;
+  public int m_AvailableChips;
 }

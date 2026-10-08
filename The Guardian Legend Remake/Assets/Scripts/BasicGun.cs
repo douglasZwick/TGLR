@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+// Biggish TODO:
+//   I should probably unify this component with ProjectileWeapon. I think they're going to end up
+//   using mostly the same approach to what I want to do.
 [RequireComponent(typeof(EventDispatcher))]
 [RequireComponent(typeof(PlayerInput))]
 public class BasicGun : MonoBehaviour
