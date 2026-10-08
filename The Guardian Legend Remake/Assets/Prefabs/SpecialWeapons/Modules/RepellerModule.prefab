@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4795592830852328892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5887566934959436693}
+  - component: {fileID: 664080427117587778}
+  - component: {fileID: -8963418989639543084}
+  - component: {fileID: 8554154040250442007}
+  - component: {fileID: 962013599170243661}
+  m_Layer: 0
+  m_Name: RepellerModule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5887566934959436693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795592830852328892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664080427117587778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795592830852328892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc92d65ac46fd94f8a0398b792692f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventDispatcher
+--- !u!114 &-8963418989639543084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795592830852328892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba194bb84b9b3e4098ffbdb38713c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialWeapon
+  m_DisplayName: Repeller
+  m_Icon: {fileID: 970930571429669622, guid: bf06133037d9b0340a0ef4029b79388f, type: 3}
+  m_Description: Fires a slow-moving orb that orbits as it moves forward
+  m_ChipCost: 3
+  m_ActivationType: 0
+--- !u!114 &8554154040250442007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795592830852328892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec07dfe0389cffe48964491c7a5e0757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSource
+  m_DamageData:
+    m_ShieldDamageAmount: 8
+    m_HealthDamageAmount: 8
+    m_Penetration: 0
+    m_Durability: 100
+    m_UseDurability: 1
+    m_Type: 0
+--- !u!114 &962013599170243661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795592830852328892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e3fd659a396924680278d87f75895b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  m_ProjectilePrefab: {fileID: 1026917063321953219, guid: a3520796f5194c84caecf09928dfaad8, type: 3}
+  m_DamageSource: {fileID: 8554154040250442007}
+  m_ProjectileSpeed: 4
+  m_ShootSound: {fileID: 11400000, guid: 0839e8b54a41bda45a26e1844a582cbf, type: 2}
