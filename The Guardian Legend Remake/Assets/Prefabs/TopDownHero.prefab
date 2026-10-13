@@ -594,9 +594,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1c0e201e8fa164b8bc00e7275633ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialWeaponsSystem
+  m_EventChannel: {fileID: 11400000, guid: de4b456f4ac9d8a4e8ea01dc4a17d958, type: 2}
   m_InventoryNode: {fileID: 1439147046292902637}
   m_FiringPoint: {fileID: 2116600579468648123}
   m_MaxChips: 50
+  m_ChangeWeaponSound: {fileID: 11400000, guid: 2aa25e2d68ba8754997441740e6413d3, type: 2}
 --- !u!114 &1687224801663253635
 MonoBehaviour:
   m_ObjectHideFlags: 0

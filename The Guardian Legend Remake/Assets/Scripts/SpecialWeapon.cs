@@ -25,6 +25,7 @@ public class SpecialWeapon : MonoBehaviour
 
   public string DisplayName => m_DisplayName;
   public string Description => m_Description;
+  public Sprite Icon => m_Icon;
 
 
   protected virtual void Awake()

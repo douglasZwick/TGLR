@@ -11,15 +11,21 @@ public class SpecialWeaponsSystem : MonoBehaviour
   public EventDispatcher ED { get; private set; }
 
   [SerializeField]
+  private EventChannel m_EventChannel;
+  [SerializeField]
   private Transform m_InventoryNode;
   private List<SpecialWeapon> m_Arsenal = new();
   private int m_WeaponIndex = 0;
   [SerializeField]
   private Transform m_FiringPoint;
   private InputAction m_SecondaryFireAction;
+  private InputAction m_NextWeaponAction;
+  private InputAction m_PreviousWeaponAction;
   [SerializeField]
   private int m_MaxChips = 50;
   private int m_Chips;
+  [SerializeField]
+  private AudioItem m_ChangeWeaponSound;
   
   private bool Empty => m_Arsenal.Count <= 0;
   private SpecialWeapon CurrentWeapon => m_Arsenal[m_WeaponIndex];
@@ -31,6 +37,8 @@ public class SpecialWeaponsSystem : MonoBehaviour
 
     var playerInput = GetComponent<PlayerInput>();
     m_SecondaryFireAction = playerInput.actions.FindAction("SecondaryFire");
+    m_NextWeaponAction = playerInput.actions.FindAction("NextWeapon");
+    m_PreviousWeaponAction = playerInput.actions.FindAction("PreviousWeapon");
 
     Initialize();
   }
@@ -44,12 +52,18 @@ public class SpecialWeaponsSystem : MonoBehaviour
 
   void Start()
   {
-    var eventData = new GaugeEventData
+    var gaugeED = new GaugeEventData
     {
       m_MaxValue = m_MaxChips,
       m_CurrentValue = m_Chips,
     };
-    ED.Dispatch(Events.GaugeSetup, eventData);
+    ED.Dispatch(Events.GaugeSetup, gaugeED);
+
+    var specialWeaponED = new SpecialWeaponEventData
+    {
+      m_CurrentWeapon = CurrentWeapon,
+    };
+    m_EventChannel.Dispatch(Events.SpecialWeaponSetup, specialWeaponED);
   }
 
 
@@ -57,6 +71,10 @@ public class SpecialWeaponsSystem : MonoBehaviour
   {
     if (m_SecondaryFireAction.WasPerformedThisFrame())
       RequestActivation();
+    if (m_NextWeaponAction.WasPerformedThisFrame())
+      SelectNextWeapon();
+    if (m_PreviousWeaponAction.WasPerformedThisFrame())
+      SelectPrevWeapon();
   }
 
 
@@ -99,7 +117,11 @@ public class SpecialWeaponsSystem : MonoBehaviour
   {
     if (Empty) return;
     
-    m_WeaponIndex = (m_WeaponIndex + 1) % m_Arsenal.Count;
+    var newIndex = m_WeaponIndex + 1;
+    if (newIndex >= m_Arsenal.Count)
+      newIndex = 0;
+    
+    SelectWeaponIndex(newIndex);
   }
 
 
@@ -107,7 +129,11 @@ public class SpecialWeaponsSystem : MonoBehaviour
   {
     if (Empty) return;
     
-    m_WeaponIndex = (m_WeaponIndex - 1) % m_Arsenal.Count;
+    var newIndex = m_WeaponIndex - 1;
+    if (newIndex < 0)
+      newIndex = m_Arsenal.Count - 1;
+
+    SelectWeaponIndex(newIndex);
   }
 
 
@@ -115,8 +141,17 @@ public class SpecialWeaponsSystem : MonoBehaviour
   {
     if (index < 0 || index >= m_Arsenal.Count)
       throw new System.IndexOutOfRangeException($"Tried to select special weapon index {index}");
+    // We don't bother if the incoming index is equal to the current index
+    if (index == m_WeaponIndex) return;
 
     m_WeaponIndex = index;
+    PlayChangeWeaponSound();
+
+    var specialWeaponED = new SpecialWeaponEventData
+    {
+      m_CurrentWeapon = CurrentWeapon,
+    };
+    m_EventChannel.Dispatch(Events.SwitchedWeapons, specialWeaponED);
   }
 
 
@@ -152,6 +187,14 @@ public class SpecialWeaponsSystem : MonoBehaviour
   }
 
 
+  void PlayChangeWeaponSound()
+  {
+    if (m_ChangeWeaponSound == null) return;
+
+    AudioManager.Instance.Play(m_ChangeWeaponSound);
+  }
+
+
   string GetReport()
   {
     var msg = new StringBuilder();
@@ -182,3 +225,21 @@ public class SpecialWeaponsSystem : MonoBehaviour
 /// 
 ///   As a band-aid fix, I'm simply pointing the SpecialWeaponsSystem's m_FiringPoint
 ///   reference at the primary gun's central firing point for now.
+
+/// TODO:
+///   I should probably make this component interface directly with the EventChannel for all the
+///   chip-related events, in addition to doing so for the icon updates. The reason I'm not already
+///   doing that is that I modeled the HUD updating paradigm after what the Health component uses.
+///   Since Health can be present on things that don't update HUD elements (e.g. enemies etc.), I
+///   wanted to write it so that it would dispatch to itself and then we would rely on the Hero
+///   having another separate component that would receive that event and forward "translate" it,
+///   so to speak, into a gauge update event that it would forward along using an EventChannel.
+///   That's all well and good for that component, but I ought to expect that nobody but the Hero
+///   will ever have special weapons that cost chips, at least the way I'm defining them now.
+/// 
+///   In the case that I do ever have a non-Hero object that uses special weapons, I can just do a
+///   null check on the EventChannel before I dispatch anything. Honestly I refactor Health and
+///   Shield to do exactly the same thing.
+
+/// TODO:
+///   Add "NO USE" or its equivalent. Make it the "current weapon" by default.

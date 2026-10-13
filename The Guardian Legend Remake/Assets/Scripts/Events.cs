@@ -68,6 +68,8 @@ public static class Events
   public static readonly EventKey<DurabilityEventData> DurabilityExhausted = new();
 
   // SpecialWeaponEvents
+  public static readonly EventKey<SpecialWeaponEventData> SpecialWeaponSetup = new();
+  public static readonly EventKey<SpecialWeaponEventData> SwitchedWeapons = new();
   public static readonly EventKey<SpecialWeaponEventData> ActivationRequest = new();
   public static readonly EventKey<SpecialWeaponEventData> DeactivationRequest = new();
   public static readonly EventKey<SpecialWeaponEventData> Activated = new();
@@ -153,6 +155,7 @@ public class DurabilityEventData
 
 public class SpecialWeaponEventData
 {
+  public SpecialWeapon m_CurrentWeapon;
   public Transform m_FiringPoint;
   public int m_AvailableChips;
   public int m_ChipsSpent;
