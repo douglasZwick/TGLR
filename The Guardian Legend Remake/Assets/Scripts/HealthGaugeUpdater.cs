@@ -40,6 +40,8 @@ public class HealthGaugeUpdater : MonoBehaviour
   }
 
 
+  // TODO:
+  //   Refactor OnShieldSetup and OnHealthSetup. I should use a unified setup event for everything
   void OnShieldSetup(HealthEventData healthED)
   {
     var gaugeED = new GaugeEventData()

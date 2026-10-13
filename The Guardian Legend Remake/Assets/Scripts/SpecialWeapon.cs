@@ -56,6 +56,7 @@ public class SpecialWeapon : MonoBehaviour
     // TODO:
     //   If m_ChipCost is 0, then it will always look like it failed. Figure out how to handle this
     specialWeaponED.m_AvailableChips -= m_ChipCost;
+    specialWeaponED.m_ChipsSpent = m_ChipCost;
 
     Activate(specialWeaponED);
   }

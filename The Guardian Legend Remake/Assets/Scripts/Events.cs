@@ -71,6 +71,7 @@ public static class Events
   public static readonly EventKey<SpecialWeaponEventData> ActivationRequest = new();
   public static readonly EventKey<SpecialWeaponEventData> DeactivationRequest = new();
   public static readonly EventKey<SpecialWeaponEventData> Activated = new();
+  public static readonly EventKey<SpecialWeaponEventData> SpentChips = new();
 }
 
 
@@ -154,4 +155,5 @@ public class SpecialWeaponEventData
 {
   public Transform m_FiringPoint;
   public int m_AvailableChips;
+  public int m_ChipsSpent;
 }

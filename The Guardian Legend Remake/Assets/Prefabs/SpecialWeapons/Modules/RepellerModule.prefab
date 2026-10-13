@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialWeapon
   m_DisplayName: Repeller
-  m_Icon: {fileID: 970930571429669622, guid: bf06133037d9b0340a0ef4029b79388f, type: 3}
+  m_Icon: {fileID: 8668209045485452990, guid: 2a5bff963957b6d41b0bebcf5183f0d0, type: 3}
   m_Description: Fires a slow-moving orb that orbits as it moves forward
   m_ChipCost: 3
   m_ActivationType: 0

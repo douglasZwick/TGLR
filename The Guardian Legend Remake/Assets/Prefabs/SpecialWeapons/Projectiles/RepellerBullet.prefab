@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoRotator
   m_Axis: {x: 0, y: 0, z: 1}
-  m_Period: 0.25
+  m_Period: 0.35
 --- !u!1 &2430465036059717016
 GameObject:
   m_ObjectHideFlags: 0

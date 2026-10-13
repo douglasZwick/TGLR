@@ -42,6 +42,17 @@ public class SpecialWeaponsSystem : MonoBehaviour
   }
 
 
+  void Start()
+  {
+    var eventData = new GaugeEventData
+    {
+      m_MaxValue = m_MaxChips,
+      m_CurrentValue = m_Chips,
+    };
+    ED.Dispatch(Events.GaugeSetup, eventData);
+  }
+
+
   void Update()
   {
     if (m_SecondaryFireAction.WasPerformedThisFrame())
@@ -135,6 +146,8 @@ public class SpecialWeaponsSystem : MonoBehaviour
     {
       // feedback for spending chips, probably dispatch an event here
       m_Chips = specialWeaponED.m_AvailableChips;
+
+      ED.Dispatch(Events.SpentChips, specialWeaponED);
     }
   }
 
